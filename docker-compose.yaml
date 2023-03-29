@@ -24,16 +24,16 @@ services:
     environment:
       DATABASE_URL: postgresql://user-name:password@postgres/db-name
       WAIT_HOSTS: postgres:5432
-  db:
-    image: postgres:14.5-bullseye
-    environment:
-      POSTGRES_PASSWORD: secret
-      POSTGRES_USER: user
-      POSTGRES_DB: fw-servicepostgres
-    ports:
-      - "15432:5432"
-    volumes:
-      - fine-whatevers-data:/var/lib/postgresql/data
+  # db:
+  #   image: postgres:14.5-bullseye
+  #   environment:
+  #     POSTGRES_PASSWORD: secret
+  #     POSTGRES_USER: user
+  #     POSTGRES_DB: fw-servicepostgres
+  #   ports:
+  #     - "15432:5432"
+  #   volumes:
+  #     - fine-whatevers-data:/var/lib/postgresql/data
 
   ghi:
     image: node:lts-bullseye
