@@ -2,37 +2,37 @@ steps = [
     [
         # "Up" SQL statement
         """
-        CREATE TABLE dummy (
+        CREATE TABLE users (
             id SERIAL PRIMARY KEY NOT NULL,
-            required_limited_text VARCHAR(1000) NOT NULL,
-            required_unlimited_text TEXT NOT NULL,
-            required_date_time TIMESTAMP NOT NULL,
-            automatically_set_date_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-            required_integer INTEGER NOT NULL,
-            required_money MONEY NOT NULL
+            username VARCHAR(50) UNIQUE NOT NULL,
+            password VARCHAR(60) NOT NULL,
+            email VARCHAR(50) NOT NULL,
+            user_pic_url VARCHAR(500),
+            bio TEXT,
+            zipcode INT CHECK (LEN(zipcode) = 5) NOT NULL,
+            is_artist BOOLEAN DEFAULT FALSE
         );
         """,
         # "Down" SQL statement
         """
-        DROP TABLE dummy;
+        DROP TABLE users;
         """
     ],
     [
         # "Up" SQL statement
         """
-        CREATE TABLE big_dummy (
+        CREATE TABLE arts (
             id SERIAL PRIMARY KEY NOT NULL,
-            required_limited_text VARCHAR(1000) NOT NULL,
-            required_unlimited_text TEXT NOT NULL,
-            required_date_time TIMESTAMP NOT NULL,
-            automatically_set_date_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-            required_integer INTEGER NOT NULL,
-            required_money MONEY NOT NULL
+            title VARCHAR(50) NOT NULL,
+            category VARCHAR(50),
+            art_pic_url VARCHAR(500),
+            description TEXT,
+            price INTEGER NOT NULL,
         );
         """,
         # "Down" SQL statement
         """
-        DROP TABLE big_dummy;
+        DROP TABLE arts;
         """
     ]
 ]
