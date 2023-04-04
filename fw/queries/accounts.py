@@ -139,7 +139,7 @@ class AccountQueries():
             "is_artist" : record[7],
 
         }
-        return dict
+        return AccountOutWithPassword(**dict)
 
     def record_to_account_out_no_password(self, record):
         return AccountOut(
