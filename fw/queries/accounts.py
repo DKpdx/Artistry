@@ -100,6 +100,7 @@ class AccountQueries():
                         """
                     )
                     return [self.record_to_account_out_no_password(record) for record in db]
+
         except Exception:
             return {"message": "Could not get the users list"}
 
@@ -110,7 +111,7 @@ class AccountQueries():
                 with conn.cursor() as db:
                     result = db.execute(
                         """
-                        SELECT id, username, email, hashed_password,user_pic_url, bio, zipcode, is_artist
+                        SELECT id, username, email, hashed_password, user_pic_url, bio, zipcode, is_artist
                         FROM users
                         WHERE username = %s;
                         """,
@@ -148,5 +149,5 @@ class AccountQueries():
             email=record[2],
             user_pic_url=record[3],
             bio=record[4],
-            zipcode=[5],
+            zipcode=record[5],
         )

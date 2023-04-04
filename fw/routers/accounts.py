@@ -60,13 +60,13 @@ async def create_account(
     token = await authenticator.login(response, request, form, repo)
     return AccountToken(account = account, **token.dict())
 
-@router.get("/accounts", response_model = AccountOut)
+@router.get("/accounts", response_model = Union[List[AccountOut], Error])
 def get_all_accounts(
     repo: AccountQueries = Depends(),
     account_data: dict = Depends(
         authenticator.get_current_account_data),
     ):
     if account_data is not None:
-        return repo.get_all(AccountOut)
+        return repo.get_all()
     else:
         raise HTTPException(status_code = 401, detail = "Unauthorized request")

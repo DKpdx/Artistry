@@ -9,7 +9,7 @@ steps = [
             email VARCHAR(50) NOT NULL,
             user_pic_url VARCHAR(500),
             bio TEXT,
-            zipcode INT NOT NULL,
+            zipcode INTEGER NOT NULL,
             is_artist BOOLEAN DEFAULT FALSE
         );
         """,
