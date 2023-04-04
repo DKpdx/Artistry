@@ -11,19 +11,23 @@ services:
     volumes:
       - ./fw:/app
     environment:
-      DATABASE_URL: postgresql://user:user@db/fwpostgres
+      SIGNING_KEY: 5882a8a70f0a2ac8664a191e8ac761b23ab7bded
+      DATABASE_URL: postgresql://fw:password@db/fwpostgres
       WAIT_HOST: db:5432
+      PORT: 8000
+      WAIT_BEFORE: 5
+      WAIT_TIMEOUT: 60
+
   db:
     image: postgres:latest
     volumes:
     - fwvolume:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: fwpostgres
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: fw
+      POSTGRES_PASSWORD: password
     ports:
       - 15432:5432
-
   ghi:
     image: node:lts-bullseye
     command: /bin/bash run.sh
@@ -37,4 +41,4 @@ services:
       NODE_ENV: development
       HOST: "0.0.0.0"
       PUBLIC_URL: http://localhost:3000
-      REACT_APP_SAMPLE_SERVICE_API_HOST: http://localhost:8000
+      REACT_APP_FINE_WHATEVERS_API_HOST: http://localhost:8000
