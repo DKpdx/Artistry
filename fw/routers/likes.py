@@ -13,5 +13,3 @@ def create_like(
 ):
     response.status_code = 200
     return repo.create(likes)
-
-
