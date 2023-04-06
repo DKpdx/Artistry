@@ -124,6 +124,68 @@ class AccountQueries():
         except Exception:
             return {"message" : "Could not get account."}
 
+    def get_account_by_id(self, id: int) -> AccountOutWithPassword:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    result = db.execute(
+                        """
+                        SELECT id, username, email, user_pic_url, bio, zipcode, is_artist
+                        FROM users
+                        WHERE id = %s
+                        """,
+                        [id],
+                    )
+                    record = result.fetchone()
+                    if record is None:
+                        return None
+                    return self.record_to_account_out_no_password(record)
+        except Exception:
+            return {"message" : "Could not get account"}
+
+    def update_account(self, id: int, user: AccountIn) -> Union[AccountOut, Error]:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    db.execute(
+                        """
+                        UPDATE users
+                        SET
+                        username = %s,
+                        email= %s,
+                        user_pic_url= %s,
+                        bio= %s,
+                        zipcode= %s
+                        WHERE id = %s
+                        """,
+                        [
+                            user.username,
+                            user.email,
+                            user.user_pic_url,
+                            user.bio,
+                            user.zipcode,
+                            id,
+                        ],
+                    )
+                    return self.account_in_to_out(id, user)
+        except Exception:
+            return {"message" : "Could not update account"}
+
+    def delete(self, id: int) -> bool:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    db.execute(
+                        """
+                        DELETE FROM users
+                        WHERE id = %s
+                        """,
+                        [id]
+                    )
+                    return True
+        except Exception:
+            return False
+
     def account_in_to_out(self, id: int, user:AccountIn):
         old_data = user.dict()
         return AccountOut(id=id, **old_data)
