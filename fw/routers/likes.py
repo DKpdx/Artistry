@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends, Response
-from typing import List, Union
+from typing import List, Union, Optional
 from queries.likes import  LikesIn, LikesOut, Error, LikesQueries
 
 
@@ -13,5 +13,3 @@ def create_like(
 ):
     response.status_code = 200
     return repo.create(likes)
-
-
