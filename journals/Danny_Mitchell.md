@@ -22,3 +22,9 @@ huge collaboration to make this all happen.
 
 4/5/23
 I worked on the front end of AUTH and now have a working login, logout and create account. When you login you are assigned a token and when you log out it destroys token.
+
+
+4/6/23
+I created the migration table for likes and then the back endpoint for posting/create of likes.
+
+
