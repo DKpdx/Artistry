@@ -65,7 +65,7 @@ class ArtQueries:
                     db.execute(
                         """
                         DELETE FROM arts
-                        WHERE id = %s
+                        WHERE arts.id = %s
                         """,
                         [art_id]
                     )

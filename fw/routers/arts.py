@@ -57,5 +57,6 @@ def get_one_art(
 def delete_art(
     art_id: int,
     repo: ArtQueries = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data),
 ) -> bool:
     return repo.delete(art_id)
