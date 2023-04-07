@@ -22,8 +22,6 @@ class LikesOut(BaseModel):
     liked_by: int
     created_at: datetime.datetime
 
-
-
 class LikesQueries:
     def create(self, likes: LikesIn) -> LikesOut:
         try:
@@ -54,6 +52,71 @@ class LikesQueries:
         except Exception:
             return {"message": "Can't create like"}
 
+    def get_all(self) -> Union[Error, List[LikesOut]]:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as conn:
+                    result = conn.execute(
+                        """
+                        SELECT id
+                        , user_id
+                        , art_id
+                        , liked_by
+                        , created_at
+                        FROM likes
+                        ORDER BY created_at;
+                        """
+                    )
+                    return [self.record_to_likes_out(record) for record in result]
+        except Exception:
+            return {"message": "Can't find any liked images"}
+
+
+    def get_likes_by_user(self, liked_by: int) -> Union[Error, List[LikesOut]]:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    result = db.execute(
+                        """
+                        SELECT id
+                        , user_id
+                        , art_id
+                        , liked_by
+                        , created_at
+                        FROM likes
+                        WHERE liked_by = %s
+                        """,
+                        [liked_by],
+                    )
+                    return [self.record_to_likes_out(record) for record in result]
+        except Exception:
+            return {"message": "You haven't liked anything yet."}
+
+
     def likes_in_to_out(self, id: int, likes: LikesIn):
         data = likes.dict()
         return LikesOut(id=id, **data)
+
+    def record_to_likes_out(self, record):
+        return LikesOut(
+            id=record[0],
+            user_id=record[1],
+            art_id=record[2],
+            liked_by=record[3],
+            created_at=record[4],
+        )
+    
+    def delete(self, likes_id: int) -> bool:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    db.execute(
+                        """
+                        DELETE FROM likes
+                        WHERE id = %s
+                        """,
+                        [likes_id]
+                    )
+                    return True
+        except Exception as e:
+            return False
