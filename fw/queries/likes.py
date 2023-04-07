@@ -22,7 +22,7 @@ class LikesOut(BaseModel):
     liked_by: int
     created_at: datetime.datetime
 
-class LikesOutWithAccount(BaseModel):
+class LikesOutWithAccount(LikesOut):
     username: str
 
 
