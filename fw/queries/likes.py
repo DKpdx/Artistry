@@ -22,6 +22,10 @@ class LikesOut(BaseModel):
     liked_by: int
     created_at: datetime.datetime
 
+class LikesOutWithAccount(LikesOut):
+    username: str
+
+
 class LikesQueries:
     def create(self, likes: LikesIn) -> LikesOut:
         try:
@@ -105,7 +109,7 @@ class LikesQueries:
             liked_by=record[3],
             created_at=record[4],
         )
-    
+
     def delete(self, likes_id: int) -> bool:
         try:
             with pool.connection() as conn:
