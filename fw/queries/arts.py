@@ -17,11 +17,15 @@ class ArtIn(BaseModel):
 
 class ArtOut(BaseModel):
     id: int
+    user_id: int
     title: str
     category: str
     art_pic_url: str
     description: str
     price: int
+
+class ArtOutWithAccount(ArtOut):
+    username: str
 
 class ArtQueries:
     def get_one(self, art_id: int) -> Optional[ArtOut]:
@@ -36,7 +40,8 @@ class ArtQueries:
                             category,
                             art_pic_url,
                             description,
-                            price
+                            price,
+                            username
                         FROM arts
                         WHERE id = %s
                         """,
@@ -97,7 +102,7 @@ class ArtQueries:
                 with conn.cursor() as db:
                     result = db.execute(
                         """
-                        SELECT id, title, category, art_pic_url, description, price
+                        SELECT id, title, category, art_pic_url, description, price, username
                         FROM arts;
                         """
                     )
@@ -108,12 +113,13 @@ class ArtQueries:
         except Exception as e:
             return {"message": "Could not get all arts"}
 
-    def create(self, art: ArtIn) -> ArtOut:
+    def create(self, art: ArtIn, user: int) -> ArtOut:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 result = db.execute(
                     """
                     INSERT INTO arts(
+                        user_id,
                         title,
                         category,
                         art_pic_url,
@@ -121,11 +127,12 @@ class ArtQueries:
                         price
                     )
                     VALUES (
-                        %s, %s, %s, %s, %s
+                        %s, %s, %s, %s, %s, %s
                     )
                     RETURNING id;
                     """,
                     [
+                        user,
                         art.title,
                         art.category,
                         art.art_pic_url,
@@ -134,18 +141,20 @@ class ArtQueries:
                     ]
                 )
                 id = result.fetchone()[0]
-                return self.art_in_to_out(id, art)
+                return self.art_in_to_out(id, art, user)
 
-    def art_in_to_out(self, id: int, art: ArtIn):
+    def art_in_to_out(self, id: int, art: ArtIn, user: int):
         data = art.dict()
-        return ArtOut(id=id, **data)
+        return ArtOut(id=id, **data, user_id=user)
 
     def record_to_art_out(self, record):
-        return ArtOut(
+        return ArtOutWithAccount(
             id=record[0],
-            title=record[1],
-            category=record[2],
-            art_pic_url=record[3],
-            description=record[4],
-            price=record[5],
+            user_id=record[1],
+            title=record[2],
+            category=record[3],
+            art_pic_url=record[4],
+            description=record[5],
+            price=record[6],
+            username=record[7],
         )

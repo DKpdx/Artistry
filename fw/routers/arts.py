@@ -1,18 +1,17 @@
 from fastapi import APIRouter, Depends, Response
 from typing import List, Union, Optional
 from queries.arts import Error, ArtIn, ArtQueries, ArtOut
-
+from authenticator import authenticator
 
 
 router = APIRouter()
 @router.post("/arts", response_model=Union[ArtOut, Error])
 def create_art(
     art: ArtIn,
-    response: Response,
+    account_data: dict = Depends(authenticator.get_current_account_data),
     repo: ArtQueries = Depends()
 ):
-    response.status_code = 400
-    return repo.create(art)
+    return repo.create(art, account_data["id"])
 
 @router.get("/arts", response_model=Union[List[ArtOut], Error])
 def get_all(
