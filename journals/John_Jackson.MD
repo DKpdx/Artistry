@@ -3,7 +3,7 @@
 ## 4/6/23
 Today as a group we worked on the endpoints for the likes feature that Danny finished his endpoint, I finished my endpoint, and we are still working on figuring Heathers out.
 
-Only design discussion was on the schema for the like table, and we dicided it would need a user id for the person that made the art, an art id for the artwork itself, a liked by refrence to the user that liked the art, and a created at to show the time the like was made to organize the art.
+Only design discussion was on the schema for the like table, and we decided it would need a user id for the person that made the art, an art id for the artwork itself, a liked by reference to the user that liked the art, and a created at to show the time the like was made to organize the art.
 
 My aha moment was being taught how to change git lab so you can't automatically push to main.
 
