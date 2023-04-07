@@ -186,7 +186,7 @@ class AccountQueries():
         except Exception:
             return False
 
-    def account_in_to_out(self, id: int, user:AccountIn):
+    def account_in_to_out(self, id: int, user: AccountIn):
         old_data = user.dict()
         return AccountOut(id=id, **old_data)
 
