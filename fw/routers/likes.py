@@ -13,3 +13,10 @@ def create_like(
 ):
     response.status_code = 200
     return repo.create(likes)
+
+@router.delete("/likes/{likes_id}", response_model=bool)
+def delete_like(
+    likes_id: int,
+    repo: LikesQueries = Depends(),
+) -> bool:
+    return repo.delete(likes_id)
