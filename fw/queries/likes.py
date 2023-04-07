@@ -57,3 +57,18 @@ class LikesQueries:
     def likes_in_to_out(self, id: int, likes: LikesIn):
         data = likes.dict()
         return LikesOut(id=id, **data)
+
+    def delete(self, likes_id: int) -> bool:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    db.execute(
+                        """
+                        DELETE FROM likes
+                        WHERE id = %s
+                        """,
+                        [likes_id]
+                    )
+                    return True
+        except Exception as e:
+            return False
