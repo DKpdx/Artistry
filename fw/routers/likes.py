@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends, Response
 from typing import List, Union, Optional
-from queries.likes import  LikesIn, LikesOut, Error, LikesQueries
+from queries.likes import  LikesIn, LikesOut, Error, LikesQueries, LikesOutWithAccount
+from authenticator import authenticator
 
 
 
@@ -9,7 +10,8 @@ router = APIRouter()
 def create_like(
     likes: LikesIn,
     response: Response,
-    repo: LikesQueries = Depends()
+    repo: LikesQueries = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data)
 ):
     response.status_code = 200
     return repo.create(likes)
