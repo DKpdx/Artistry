@@ -35,9 +35,13 @@ def get_all_likes_by_user(
         response.status_code = 404
     return likes
 
-@router.delete("/likes/{likes_id}", response_model=bool)
+@router.delete(
+        "/likes/{likes_id}",
+        response_model=bool,
+        )
 def delete_like(
     likes_id: int,
     repo: LikesQueries = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data)
 ) -> bool:
     return repo.delete(likes_id)
