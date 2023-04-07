@@ -20,6 +20,7 @@ def create_like(
 @router.get("/likes", response_model=Union[List[LikesOut], Error])
 def get_all(
     repo: LikesQueries = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data)
 ):
     return repo.get_all()
 
@@ -29,6 +30,7 @@ def get_all_likes_by_user(
     liked_by: int,
     response: Response,
     repo: LikesQueries = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data)
 ) -> LikesOut:
     likes = repo.get_likes_by_user(liked_by)
     if likes is None:
