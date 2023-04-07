@@ -28,3 +28,5 @@ I worked on the front end of AUTH and now have a working login, logout and creat
 I created the migration table for likes and then the back endpoint for posting/create of likes.
 
 
+4/6/23
+Added protection to the like post so that only the signed in user could see what they had saved as a liked item.
