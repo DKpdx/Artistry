@@ -15,7 +15,7 @@ class AccountIn(BaseModel):
     user_pic_url: str
     bio: Optional[str]
     zipcode: int
-    is_artist: Optional[bool]
+
 
 class AccountOut(BaseModel):
     id: int
@@ -24,7 +24,14 @@ class AccountOut(BaseModel):
     user_pic_url: str
     bio: Optional[str]
     zipcode: int
-    is_artist: Optional[bool]
+
+class AccountUpdateIn(BaseModel):
+    username: Optional[str]
+    email: Optional[str]
+    user_pic_url: Optional[str]
+    bio: Optional[str]
+    zipcode: Optional[str]
+
 
 class AccountOutWithPassword(AccountOut):
     hashed_password: str
@@ -42,11 +49,10 @@ class AccountQueries():
                             hashed_password,
                             user_pic_url,
                             bio,
-                            zipcode,
-                            is_artist
+                            zipcode
                             )
                         VALUES (
-                            %s,%s,%s,%s,%s,%s,%s
+                            %s,%s,%s,%s,%s,%s
                             )
                         RETURNING
                             id,
@@ -55,8 +61,7 @@ class AccountQueries():
                             hashed_password,
                             user_pic_url,
                             bio,
-                            zipcode,
-                            is_artist;
+                            zipcode;
                         """,
                         [
                             user.username,
@@ -65,7 +70,6 @@ class AccountQueries():
                             user.user_pic_url,
                             user.bio,
                             user.zipcode,
-                            user.is_artist,
                         ]
                     )
                     id = result.fetchone()[0]
@@ -76,8 +80,7 @@ class AccountQueries():
                         hashed_password = hashed_password,
                         user_pic_url = user.user_pic_url,
                         bio = user.bio,
-                        zipcode = user.zipcode,
-                        is_artist = user.is_artist
+                        zipcode = user.zipcode
                     )
         except Exception:
             return {"message" : "Could not create user."}
@@ -111,7 +114,7 @@ class AccountQueries():
                 with conn.cursor() as db:
                     result = db.execute(
                         """
-                        SELECT id, username, email, hashed_password, user_pic_url, bio, zipcode, is_artist
+                        SELECT id, username, email, hashed_password, user_pic_url, bio, zipcode
                         FROM users
                         WHERE username = %s;
                         """,
@@ -130,7 +133,7 @@ class AccountQueries():
                 with conn.cursor() as db:
                     result = db.execute(
                         """
-                        SELECT id, username, email, user_pic_url, bio, zipcode, is_artist
+                        SELECT id, username, email, user_pic_url, bio, zipcode
                         FROM users
                         WHERE id = %s
                         """,
@@ -143,7 +146,7 @@ class AccountQueries():
         except Exception:
             return {"message" : "Could not get account"}
 
-    def update_account(self, id: int, user: AccountIn) -> Union[AccountOut, Error]:
+    def update_account(self, id: int, user: AccountUpdateIn) -> Union[AccountOut, Error]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
@@ -199,8 +202,6 @@ class AccountQueries():
             "user_pic_url" : record[4],
             "bio" : record[5],
             "zipcode" : record[6],
-            "is_artist" : record[7],
-
         }
         return AccountOutWithPassword(**dict)
 
@@ -212,4 +213,5 @@ class AccountQueries():
             user_pic_url=record[3],
             bio=record[4],
             zipcode=record[5],
+
         )
