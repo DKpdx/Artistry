@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, Response
+from fastapi import APIRouter, Depends, Response, HTTPException
 from typing import List, Union, Optional
 from queries.likes import  LikesIn, LikesOut, Error, LikesQueries, LikesOutWithAccount
 from authenticator import authenticator
@@ -38,12 +38,14 @@ def get_all_likes_by_user(
     return likes
 
 @router.delete(
-        "/likes/{likes_id}",
+        "/likes/{liked_by}",
         response_model=bool,
         )
 def delete_like(
-    likes_id: int,
+    liked_by: int,
     repo: LikesQueries = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data)
 ) -> bool:
-    return repo.delete(likes_id)
+    if account_data["id"] != liked_by:
+        raise HTTPException(status_code=403, detail="Cannot delete other people's likes.")
+    return repo.delete(liked_by)
