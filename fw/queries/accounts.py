@@ -144,7 +144,7 @@ class AccountQueries():
                         return None
                     return self.record_to_account_out_no_password(record)
         except Exception:
-            return {"message" : "Could not get account"}
+            return {"message" : "Could not get account with that ID."}
 
     def update_account(self, id: int, user: AccountUpdateIn) -> Union[AccountOut, Error]:
         try:
@@ -172,7 +172,7 @@ class AccountQueries():
                     )
                     return self.account_in_to_out(id, user)
         except Exception:
-            return {"message" : "Could not update account"}
+            return {"message" : "Could not update account."}
 
     def delete(self, id: int) -> bool:
         try:
