@@ -9,7 +9,8 @@ from queries.accounts import (
     AccountOut,
     AccountQueries,
     DuplicateAccountError,
-    AccountOutWithPassword
+    AccountOutWithPassword,
+    AccountUpdateIn,
 )
 
 class AccountForm(BaseModel):
@@ -92,7 +93,7 @@ def get_account_by_id(
 @router.put("/accounts/{id}", response_model=AccountOut)
 def update_account(
     id: int,
-    user: AccountIn,
+    user: AccountUpdateIn,
     repo: AccountQueries = Depends(),
     account_data: Optional[dict] = Depends(
         authenticator.try_get_current_account_data
