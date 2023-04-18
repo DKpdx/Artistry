@@ -2,11 +2,14 @@ from pydantic import BaseModel
 from typing import Optional, Union, List
 from queries.pool import pool
 
+
 class DuplicateAccountError(ValueError):
     pass
 
+
 class Error(BaseModel):
     message: str
+
 
 class AccountIn(BaseModel):
     username: str
@@ -25,6 +28,7 @@ class AccountOut(BaseModel):
     bio: Optional[str]
     zipcode: int
 
+
 class AccountUpdateIn(BaseModel):
     username: Optional[str]
     email: Optional[str]
@@ -36,8 +40,11 @@ class AccountUpdateIn(BaseModel):
 class AccountOutWithPassword(AccountOut):
     hashed_password: str
 
-class AccountQueries():
-    def create(self, user: AccountIn, hashed_password: str) -> AccountOutWithPassword:
+
+class AccountQueries:
+    def create(
+        self, user: AccountIn, hashed_password: str
+    ) -> AccountOutWithPassword:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
@@ -70,20 +77,20 @@ class AccountQueries():
                             user.user_pic_url,
                             user.bio,
                             user.zipcode,
-                        ]
+                        ],
                     )
                     id = result.fetchone()[0]
                     return AccountOutWithPassword(
-                        id = id,
-                        username = user.username,
-                        email = user.email,
-                        hashed_password = hashed_password,
-                        user_pic_url = user.user_pic_url,
-                        bio = user.bio,
-                        zipcode = user.zipcode
+                        id=id,
+                        username=user.username,
+                        email=user.email,
+                        hashed_password=hashed_password,
+                        user_pic_url=user.user_pic_url,
+                        bio=user.bio,
+                        zipcode=user.zipcode,
                     )
         except Exception:
-            return {"message" : "Could not create user."}
+            return {"message": "Could not create user."}
 
     def get_all(self) -> Union[List[AccountOut], Error]:
         try:
@@ -102,11 +109,13 @@ class AccountQueries():
                         FROM users;
                         """
                     )
-                    return [self.record_to_account_out_no_password(record) for record in db]
+                    return [
+                        self.record_to_account_out_no_password(record)
+                        for record in db
+                    ]
 
         except Exception:
             return {"message": "Could not get the users list"}
-
 
     def get(self, username: str) -> AccountOutWithPassword:
         try:
@@ -125,7 +134,7 @@ class AccountQueries():
                         return None
                     return self.record_to_account_out(record)
         except Exception:
-            return {"message" : "Could not get account."}
+            return {"message": "Could not get account."}
 
     def get_account_by_id(self, id: int) -> AccountOutWithPassword:
         try:
@@ -144,9 +153,11 @@ class AccountQueries():
                         return None
                     return self.record_to_account_out_no_password(record)
         except Exception:
-            return {"message" : "Could not get account with that ID."}
+            return {"message": "Could not get account with that ID."}
 
-    def update_account(self, id: int, user: AccountUpdateIn) -> Union[AccountOut, Error]:
+    def update_account(
+        self, id: int, user: AccountUpdateIn
+    ) -> Union[AccountOut, Error]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
@@ -172,7 +183,7 @@ class AccountQueries():
                     )
                     return self.account_in_to_out(id, user)
         except Exception:
-            return {"message" : "Could not update account."}
+            return {"message": "Could not update account."}
 
     def delete(self, id: int) -> bool:
         try:
@@ -183,7 +194,7 @@ class AccountQueries():
                         DELETE FROM users
                         WHERE id = %s
                         """,
-                        [id]
+                        [id],
                     )
                     return True
         except Exception:
@@ -195,13 +206,13 @@ class AccountQueries():
 
     def record_to_account_out(self, record) -> AccountOutWithPassword:
         dict = {
-            "id" : record[0],
-            "username" : record[1],
-            "email" : record[2],
-            "hashed_password" : record[3],
-            "user_pic_url" : record[4],
-            "bio" : record[5],
-            "zipcode" : record[6],
+            "id": record[0],
+            "username": record[1],
+            "email": record[2],
+            "hashed_password": record[3],
+            "user_pic_url": record[4],
+            "bio": record[5],
+            "zipcode": record[6],
         }
         return AccountOutWithPassword(**dict)
 
@@ -213,5 +224,4 @@ class AccountQueries():
             user_pic_url=record[3],
             bio=record[4],
             zipcode=record[5],
-
         )
