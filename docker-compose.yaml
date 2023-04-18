@@ -21,7 +21,7 @@ services:
   db:
     image: postgres:latest
     volumes:
-    - fwvolume:/var/lib/postgresql/data
+      - fwvolume:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: fwpostgres
       POSTGRES_USER: fw
