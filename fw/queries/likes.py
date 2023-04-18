@@ -3,11 +3,14 @@ from typing import Optional, Union, List
 from queries.pool import pool
 import datetime
 
+
 class DuplicateLikesError(ValueError):
     pass
 
+
 class Error(BaseModel):
     message: str
+
 
 class LikesIn(BaseModel):
     user_id: int
@@ -15,12 +18,14 @@ class LikesIn(BaseModel):
     liked_by: int
     created_at: datetime.datetime
 
+
 class LikesOut(BaseModel):
     id: int
     user_id: int
     art_id: int
     liked_by: int
     created_at: datetime.datetime
+
 
 class LikesOutWithAccount(LikesOut):
     username: str
@@ -49,7 +54,7 @@ class LikesQueries:
                             likes.art_id,
                             likes.liked_by,
                             likes.created_at,
-                        ]
+                        ],
                     )
                     id = result.fetchone()[0]
                     return self.likes_in_to_out(id, likes)
@@ -71,10 +76,11 @@ class LikesQueries:
                         ORDER BY created_at;
                         """
                     )
-                    return [self.record_to_likes_out(record) for record in result]
+                    return [
+                        self.record_to_likes_out(record) for record in result
+                    ]
         except Exception:
             return {"message": "Can't find any liked images"}
-
 
     def get_likes_by_user(self, liked_by: int) -> Union[Error, List[LikesOut]]:
         try:
@@ -92,10 +98,11 @@ class LikesQueries:
                         """,
                         [liked_by],
                     )
-                    return [self.record_to_likes_out(record) for record in result]
+                    return [
+                        self.record_to_likes_out(record) for record in result
+                    ]
         except Exception:
             return {"message": "You haven't liked anything yet."}
-
 
     def likes_in_to_out(self, id: int, likes: LikesIn):
         data = likes.dict()
@@ -119,7 +126,7 @@ class LikesQueries:
                         DELETE FROM likes
                         WHERE id = %s
                         """,
-                        [likes_id]
+                        [likes_id],
                     )
                     return True
         except Exception as e:

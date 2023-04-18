@@ -1,17 +1,24 @@
 from fastapi import APIRouter, Depends, Response, HTTPException
 from typing import List, Union, Optional
-from queries.likes import  LikesIn, LikesOut, Error, LikesQueries, LikesOutWithAccount
+from queries.likes import (
+    LikesIn,
+    LikesOut,
+    Error,
+    LikesQueries,
+    LikesOutWithAccount,
+)
 from authenticator import authenticator
 
 
-
 router = APIRouter()
+
+
 @router.post("/likes", response_model=Union[LikesOut, Error])
 def create_like(
     likes: LikesIn,
     response: Response,
     repo: LikesQueries = Depends(),
-    account_data: dict = Depends(authenticator.get_current_account_data)
+    account_data: dict = Depends(authenticator.get_current_account_data),
 ):
     response.status_code = 200
     return repo.create(likes)
@@ -20,7 +27,7 @@ def create_like(
 @router.get("/likes", response_model=Union[List[LikesOut], Error])
 def get_all(
     repo: LikesQueries = Depends(),
-    account_data: dict = Depends(authenticator.get_current_account_data)
+    account_data: dict = Depends(authenticator.get_current_account_data),
 ):
     return repo.get_all()
 
@@ -30,22 +37,25 @@ def get_all_likes_by_user(
     liked_by: int,
     response: Response,
     repo: LikesQueries = Depends(),
-    account_data: dict = Depends(authenticator.get_current_account_data)
+    account_data: dict = Depends(authenticator.get_current_account_data),
 ) -> LikesOut:
     likes = repo.get_likes_by_user(liked_by)
     if likes is None:
         response.status_code = 404
     return likes
 
+
 @router.delete(
-        "/likes/{liked_by}",
-        response_model=bool,
-        )
+    "/likes/{liked_by}",
+    response_model=bool,
+)
 def delete_like(
     liked_by: int,
     repo: LikesQueries = Depends(),
-    account_data: dict = Depends(authenticator.get_current_account_data)
+    account_data: dict = Depends(authenticator.get_current_account_data),
 ) -> bool:
     if account_data["id"] != liked_by:
-        raise HTTPException(status_code=403, detail="Cannot delete other people's likes.")
+        raise HTTPException(
+            status_code=403, detail="Cannot delete other people's likes."
+        )
     return repo.delete(liked_by)
