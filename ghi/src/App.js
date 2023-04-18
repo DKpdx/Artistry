@@ -5,6 +5,7 @@ import Construct from './Construct.js';
 import { AuthContext } from '@galvanize-inc/jwtdown-for-react';
 import LoginForm from './LoginForm.js';
 import CreateAccountForm from './CreateAccountForm.js';
+import UpdateAccountForm from './Accounts/UpdateAccountForm.js';
 import ErrorNotification from './ErrorNotification';
 import './App.css';
 
@@ -12,15 +13,16 @@ import './App.css';
 function App() {
   const { token } = useContext(AuthContext)
   console.log(token)
-return(
+return (
   <>
     <Nav />
     <Routes>
-      <Route path = "/login" element = {< LoginForm />} />
-      <Route path = "/accounts" element = {<CreateAccountForm/>} />
+      <Route path="/login" element={<LoginForm />} />
+      <Route path="/accounts" element={<CreateAccountForm />} />
+      <Route path="/accounts/:id" element={<UpdateAccountForm />} />
     </Routes>
   </>
-)
+);
 }
 
 export default App;

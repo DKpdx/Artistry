@@ -48,6 +48,11 @@ return (
             Create Account
             </NavLink>
         </li>
+        <li className="nav-item">
+            <NavLink className="nav-link" to={`/accounts/:id`}>
+            Update Account
+            </NavLink>
+        </li>
         <li>
             <button onClick={handleLogout}>Logout</button>
         </li>
