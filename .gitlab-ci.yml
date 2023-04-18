@@ -60,7 +60,7 @@ build-front-end-job:
     # You need to substitute in your real values for
     # GROUP_NAME, PROJECT_NAME, & WEBSERVICE_NAME below.
     PUBLIC_URL: https://im-fine-with-whatever.gitlab.io/fine-whatevers/
-    REACT_APP_SAMPLE_SERVICE_API_HOST:https://fine-whatevers.dec-pt-14.mod3projects.com/
+    REACT_APP_SAMPLE_SERVICE_API_HOST: https://fine-whatevers.dec-pt-14.mod3projects.com/
   script:
     - cd ghi
     - npm install
