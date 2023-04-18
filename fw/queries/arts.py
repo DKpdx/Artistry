@@ -2,11 +2,14 @@ from pydantic import BaseModel
 from typing import Optional, Union, List
 from queries.pool import pool
 
+
 class DuplicateArtError(ValueError):
     pass
 
+
 class Error(BaseModel):
     message: str
+
 
 class ArtIn(BaseModel):
     title: str
@@ -14,6 +17,7 @@ class ArtIn(BaseModel):
     art_pic_url: str
     description: str
     price: int
+
 
 class ArtOut(BaseModel):
     id: int
@@ -24,8 +28,10 @@ class ArtOut(BaseModel):
     description: str
     price: int
 
+
 class ArtOutWithAccount(ArtOut):
     username: str
+
 
 class ArtQueries:
     def get_one(self, art_id: int) -> Optional[ArtOutWithAccount]:
@@ -48,7 +54,7 @@ class ArtQueries:
                         ON users.id=arts.user_id
                         WHERE arts.id = %s
                         """,
-                        [art_id]
+                        [art_id],
                     )
                     record = result.fetchone()
                     if record is None:
@@ -67,13 +73,15 @@ class ArtQueries:
                         DELETE FROM arts
                         WHERE arts.id = %s
                         """,
-                        [art_id]
+                        [art_id],
                     )
                     return True
         except Exception as e:
             return False
 
-    def update(self, art_id: int, art: ArtIn, user_id: int) -> Union[ArtOut, Error]:
+    def update(
+        self, art_id: int, art: ArtIn, user_id: int
+    ) -> Union[ArtOut, Error]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
@@ -93,8 +101,8 @@ class ArtQueries:
                             art.art_pic_url,
                             art.description,
                             art.price,
-                            art_id
-                        ]
+                            art_id,
+                        ],
                     )
                     return self.art_in_to_out(art_id, art, user_id)
         except Exception as e:
@@ -121,8 +129,7 @@ class ArtQueries:
                         """,
                     )
                     return [
-                        self.record_to_art_out(record)
-                        for record in result
+                        self.record_to_art_out(record) for record in result
                     ]
         except Exception as e:
             return {"message": "Could not get all arts"}
@@ -152,7 +159,7 @@ class ArtQueries:
                         art.art_pic_url,
                         art.description,
                         art.price,
-                    ]
+                    ],
                 )
                 id = result.fetchone()[0]
                 return self.art_in_to_out(id, art, user)
