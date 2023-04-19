@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { BiWorld, BiUser } from "react-icons/bi";
-import { FiMenu, FiSearch } from "react-icons/fi";
+import { FiSearch } from "react-icons/fi";
 
 const Navbar = () => {
   return (
@@ -29,7 +29,10 @@ const Navbar = () => {
         {/* Right */}
         <div className="flex items-center pr-3 font-semibold text-gray-500">
           <div className="">
-            <p className="text-[18px]">Post Your Art!</p>
+            {/* This needs to have an if or statement, where if user is logged in we can post art, otherwise hide the button */}
+            <NavLink className="nav-link text-[18px]" to="/arts">
+              Post Your Art!
+            </NavLink>
           </div>
           <div className="flex items-center mx-8 gap-1">
             <BiWorld className="text-[18px]" />
@@ -37,7 +40,13 @@ const Navbar = () => {
           </div>
           <div className="flex items-center border px-4 py-2 rounded-full gap-3 bg-[#ff5a60] text-white font-bold shadow-sm shadow-gray-300 hover:bg-[#f9787c] duration-100 ease-out">
             <NavLink className="nav-link" to="/login">
-              <button>Sign In</button>
+              Log In
+            </NavLink>
+            <BiUser className="text-[20px]" />
+          </div>
+          <div className="flex items-center border px-4 py-2 rounded-full gap-3 bg-[#ff5a60] text-white font-bold shadow-sm shadow-gray-300 hover:bg-[#f9787c] duration-100 ease-out">
+            <NavLink className="nav-link" to="/accounts/new">
+              Sign Up
             </NavLink>
             <BiUser className="text-[20px]" />
           </div>
