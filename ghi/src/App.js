@@ -6,18 +6,25 @@ import { AuthContext } from "@galvanize-inc/jwtdown-for-react";
 import LoginForm from "./LoginForm.js";
 import CreateAccountForm from "./CreateAccountForm.js";
 import ErrorNotification from "./ErrorNotification";
+import AccountDetails from "./AccountDetails.js";
 import "./App.css";
+import Navbar from "./components/Navbar";
+import Arts from "./components/Arts";
 
 function App() {
   const { token } = useContext(AuthContext);
   console.log(token);
   return (
     <>
-      <Nav />
-      <Routes>
-        <Route path="/login" element={<LoginForm />} />
-        <Route path="/accounts" element={<CreateAccountForm />} />
-      </Routes>
+      <Navbar />
+      <div className="sm:mx-6 md:mx-10 lg:mx-12 px-3">
+        <Routes>
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/accounts" element={<CreateAccountForm />} />
+          <Route path="/accounts/me" element={<AccountDetails />} />
+          <Route path="" element={<Arts />} />
+        </Routes>
+      </div>
     </>
   );
 }

@@ -43,6 +43,11 @@ function Nav() {
                 User Login
               </NavLink>
             </li>
+            <li className="container-fluid">
+            <NavLink className="navbar-brand" to="/account/me">
+              Account Details
+            </NavLink>
+            </li>
             <li className="nav-item mr-auto">
               <NavLink className="nav-link" to="/accounts">
                 Create Account
