@@ -49,7 +49,7 @@ return (
             </NavLink>
         </li>
         <li className="nav-item">
-            <NavLink className="nav-link" to={`/accounts/:id`}>
+            <NavLink className="nav-link" to={`/accounts/id`}>
             Update Account
             </NavLink>
         </li>

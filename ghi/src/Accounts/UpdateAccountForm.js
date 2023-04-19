@@ -1,13 +1,32 @@
-import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
-import { useState } from "react";
+import { useAuthContext, fetchWithToken } from "@galvanize-inc/jwtdown-for-react";
+import { useEffect, useState } from "react";
 
 function UpdateAccountForm() {
+    const [account, setAccount] = useState([]);
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [user_pic_url, setUser_Pic_Url] = useState("");
     const [bio, setBio] = useState("");
     const [zipcode, setZipcode] = useState("");
     const { token } = useAuthContext();
+
+    const fetchAccount = async () => {
+    const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/token`;
+    const response = await fetch(url, {
+        method: "GET",
+        credentials: "include",
+    });
+    if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        setAccount(data.account);
+    } else {
+        console.log("Error fetching account:", response.status);
+    }
+    };
+    useEffect(() => {
+        fetchAccount();
+    }, []);
 
     const handleSubmit = async (event) =>{
         event.preventDefault();
@@ -18,7 +37,8 @@ function UpdateAccountForm() {
         data.bio = bio;
         data.zipcode = zipcode;
 
-        const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/accounts/${user.id}`;
+
+        const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/accounts/${account.id}`;
         const fetchConfig = {
             method: "PUT",
             body: JSON.stringify(data),
@@ -27,6 +47,7 @@ function UpdateAccountForm() {
                 "Content-Type": "application/json",
             },
         };
+
 
         const response = await fetch(url, fetchConfig);
         if (response.ok){
@@ -40,7 +61,10 @@ function UpdateAccountForm() {
             console.error("Error updating account information. Please try again");
         }
     };
-
+    
+    useEffect(() => {
+        handleSubmit();
+    }, []);
     return (
     <>
         <div className="container-fluid d-flex justify-content-center">

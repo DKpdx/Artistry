@@ -19,7 +19,7 @@ return (
     <Routes>
       <Route path="/login" element={<LoginForm />} />
       <Route path="/accounts" element={<CreateAccountForm />} />
-      <Route path="/accounts/:id" element={<UpdateAccountForm />} />
+      <Route path="/accounts/id" element={<UpdateAccountForm />} />
     </Routes>
   </>
 );
