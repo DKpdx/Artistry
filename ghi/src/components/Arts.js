@@ -28,6 +28,7 @@ const Arts = () => {
       <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
         {arts.map((art) => (
           <Art
+            key={art.id}
             artist={art.user_id}
             title={art.title}
             image={art.art_pic_url}
