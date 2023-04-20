@@ -10,7 +10,9 @@ const Arts = () => {
 
   const fetchArts = async () => {
     try {
-      const response = await fetch("http://localhost:8000/arts");
+      const response = await fetch(
+        `${process.env.REACT_APP_USER_SERVICE_API_HOST}/arts`
+      );
       if (!response.ok) {
         throw new Error("Failed to fetch arts data");
       }
