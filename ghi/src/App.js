@@ -10,6 +10,7 @@ import AccountDetails from "./AccountDetails.js";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Arts from "./components/Arts";
+import CreateArtForm from "./CreateArtForm.js";
 
 function App() {
   const { token } = useContext(AuthContext);
@@ -23,6 +24,7 @@ function App() {
           <Route path="/accounts" element={<CreateAccountForm />} />
           <Route path="/accounts/me" element={<AccountDetails />} />
           <Route path="" element={<Arts />} />
+          <Route path="arts" element={<CreateArtForm />} />
         </Routes>
       </div>
     </>
