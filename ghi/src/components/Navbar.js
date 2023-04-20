@@ -52,8 +52,8 @@ const Navbar = () => {
           </div>
           <div className="flex items-center mx-8 gap-1">
             <NavLink className="navbar-brand" to="/accounts/me">
-            <BiUser className="text-[16px]" />
-            <button className="">My Account</button>
+              <BiUser className="text-[16px]" />
+              <button className="">My Account</button>
             </NavLink>
           </div>
           <div className="flex items-center border px-4 py-2 rounded-full gap-3 bg-[#ff5a60] text-white font-bold shadow-sm shadow-gray-300 hover:bg-[#f9787c] duration-100 ease-out">
