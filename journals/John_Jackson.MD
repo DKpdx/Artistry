@@ -1,4 +1,9 @@
 ## Journals
+## 4/19/23
+Today we worked as group on some bug fixes. I got my update account form to work, but we are still getting errors in the console.
+
+Danny was able to get his detail of accounts working.
+
 ## 4/18/23
 Today we worked on deployment a little bit then we split off and worked on our front end components.
 
