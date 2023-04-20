@@ -18,7 +18,7 @@
         data.user_pic_url = user_pic_url;
         data.bio = bio;
         data.zipcode = zipcode;
-        const url = "http://localhost:8000/accounts";
+        const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/accounts`;
         const fetchConfig = {
         method: "POST",
         body: JSON.stringify(data),
