@@ -28,5 +28,14 @@ I worked on the front end of AUTH and now have a working login, logout and creat
 I created the migration table for likes and then the back endpoint for posting/create of likes.
 
 
-4/6/23
+4/7/23
 Added protection to the like post so that only the signed in user could see what they had saved as a liked item.
+
+4/17/23
+We worked as a team trying to get the deployment aspects figured out. We were down two people but the three of us tried our best.
+
+4/18/23
+Team worked more on deployment aspect and then delegated working on some of our front end aspects. I started working on the account details page for a signed in user.
+
+4/19/23
+I got the account details page to pull the account details from a signed in user from the back endpoint. This was accomplished using the Token from being signed in to match the user up with the db on the backend. Also adjusted the Create account from to send it to the endpoint using the url that works upon deployment.

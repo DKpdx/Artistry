@@ -3,7 +3,7 @@ import useToken from "@galvanize-inc/jwtdown-for-react";
 
 function AccountDetails() {
     const [account, setAccount] = useState([]);
-    // const { token } = useToken();
+    const { token } = useToken();
 
     const fetchAccount = async () => {
     const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/token`;
