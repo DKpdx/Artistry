@@ -1,5 +1,6 @@
 import { useAuthContext, fetchWithToken } from "@galvanize-inc/jwtdown-for-react";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom"
 
 function UpdateAccountForm() {
     const [account, setAccount] = useState([]);
@@ -9,6 +10,7 @@ function UpdateAccountForm() {
     const [bio, setBio] = useState("");
     const [zipcode, setZipcode] = useState("");
     const { token } = useAuthContext();
+    const navigate = useNavigate();
 
     const fetchAccount = async () => {
     const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/token`;
@@ -38,6 +40,7 @@ function UpdateAccountForm() {
         data.zipcode = zipcode;
 
 
+
         const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/accounts/${account.id}`;
         const fetchConfig = {
             method: "PUT",
@@ -52,19 +55,20 @@ function UpdateAccountForm() {
         const response = await fetch(url, fetchConfig);
         if (response.ok){
             await response.json();
+            setAccount([]);
             setUsername("");
             setEmail("");
             setUser_Pic_Url("");
             setBio("");
             setZipcode("");
+            fetchAccount();
+            navigate("/accounts/me")
+            
         } else {
             console.error("Error updating account information. Please try again");
         }
     };
     
-    useEffect(() => {
-        handleSubmit();
-    }, []);
     return (
     <>
         <div className="container-fluid d-flex justify-content-center">

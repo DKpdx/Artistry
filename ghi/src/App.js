@@ -7,6 +7,7 @@ import LoginForm from "./LoginForm.js";
 import CreateAccountForm from "./CreateAccountForm.js";
 import ErrorNotification from "./ErrorNotification";
 import AccountDetails from "./AccountDetails.js";
+import UpdateAccountForm from "./Accounts/UpdateAccountForm.js";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Arts from "./components/Arts";
@@ -23,6 +24,7 @@ function App() {
           <Route path="/login" element={<LoginForm />} />
           <Route path="/accounts" element={<CreateAccountForm />} />
           <Route path="/accounts/me" element={<AccountDetails />} />
+          <Route path="/accounts/id" element={<UpdateAccountForm/>} />
           <Route path="" element={<Arts />} />
           <Route path="arts" element={<CreateArtForm />} />
         </Routes>
