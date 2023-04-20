@@ -14,3 +14,15 @@ I went ahead and worked on the backend for the arts endpoint, but it messed up e
 
 Thursday 4/6/2023:
 Did peer programing with everyone that's missing their endpoints. I'm fixing with arts api and its database to that each art is assign to a a user and the art displays the art username versus an integer.
+
+Friday 4/7/2023:
+I started on the create art form.
+
+4/10-4/17/2023:
+Dealing with a lost of someone important to me.
+
+Tuesday 4/18/2023:
+I was having token authorization issue when it came to creating an art form. Will be spending the today and tomorrow to fix it.
+
+Wednesday 4/18/19:
+Managed to solve the authorization issue and managed to get the app to work with tailwind.
