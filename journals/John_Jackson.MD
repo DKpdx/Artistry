@@ -1,4 +1,9 @@
 ## Journals
+## 4/20/23
+Today I finished the updated form. It's still not updating everything on the front end immediatly, but will update after being logged out.
+
+Danny and I peer programed on writing unit test for get all accounts and  get accounts by id. 
+
 ## 4/19/23
 Today we worked as group on some bug fixes. I got my update account form to work, but we are still getting errors in the console.
 
