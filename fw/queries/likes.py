@@ -81,6 +81,28 @@ class LikesQueries:
                     ]
         except Exception:
             return {"message": "Can't find any liked images"}
+    
+    def get_like_by_id(self, likes_id: int) -> Optional[LikesOut]:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    result = db.execute(
+                        """
+                        SELECT id
+                        , user_id
+                        , art_id
+                        , liked_by
+                        , created_at
+                        FROM likes
+                        WHERE id = %s
+                        """,
+                        [likes_id],
+                    )
+                    record = result.fetchone()
+                    if record is not None:
+                        return self.record_to_likes_out(record)
+        except Exception:
+            return None
 
     def get_likes_by_user(self, liked_by: int) -> Union[Error, List[LikesOut]]:
         try:
