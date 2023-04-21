@@ -24,5 +24,8 @@ Dealing with a lost of someone important to me.
 Tuesday 4/18/2023:
 I was having token authorization issue when it came to creating an art form. Will be spending the today and tomorrow to fix it.
 
-Wednesday 4/18/19:
-Managed to solve the authorization issue and managed to get the app to work with tailwind.
+Wednesday 4/19/2023:
+Managed to solve the authorization issue on my create art form and managed to get the app to work with tailwind.
+
+Thursday 4/20/2023:
+Worked on an update art form and managed to get it to work. We have a few more components that we need to finish still. I'm going to start working on the art detail page tomorrow.
