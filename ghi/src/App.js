@@ -12,6 +12,7 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import Arts from "./components/Arts";
 import CreateArtForm from "./CreateArtForm.js";
+import AllMyLikes from "./components/AllMyLikes.js";
 
 function App() {
   const { token } = useContext(AuthContext);
@@ -24,8 +25,9 @@ function App() {
           <Route path="/login" element={<LoginForm />} />
           <Route path="/accounts" element={<CreateAccountForm />} />
           <Route path="/accounts/me" element={<AccountDetails />} />
-          <Route path="/accounts/id" element={<UpdateAccountForm/>} />
+          <Route path="/accounts/id" element={<UpdateAccountForm />} />
           <Route path="" element={<Arts />} />
+          <Route path="/likes" element={<AllMyLikes />} />
           <Route path="arts" element={<CreateArtForm />} />
         </Routes>
       </div>

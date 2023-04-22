@@ -5,6 +5,7 @@ import { BiWorld, BiUser } from "react-icons/bi";
 import { FiMenu, FiSearch } from "react-icons/fi";
 import { useContext } from "react";
 import { AuthContext } from "@galvanize-inc/jwtdown-for-react";
+import AllMyLikes from './AllMyLikes';
 
 const Navbar = () => {
   const { setToken } = useContext(AuthContext);
@@ -29,7 +30,7 @@ const Navbar = () => {
       <div className="flex justify-between items-center sm:mx-6 md:mx-10 lg:mx-12">
         {/* Left */}
         <div className="h-20 flex">
-          <img src={logo} className="object-cover" />
+          <img src={logo} alt="" className="object-cover" />
         </div>
         {/* Middle */}
         <div className="hidden lg:flex justify-center items-center relative shadow-sm shadow-gray-300 border rounded-full">
@@ -74,6 +75,11 @@ const Navbar = () => {
           <div className="flex items-center border px-4 py-2 rounded-full gap-3 bg-[#ff5a60] text-white font-bold shadow-sm shadow-gray-300 hover:bg-[#f9787c] duration-100 ease-out">
             <NavLink className="nav-link" to="/accounts/id">
               <button>Update Account</button>
+            </NavLink>
+          </div>
+          <div className="flex items-center border px-4 py-2 rounded-full gap-3 bg-[#ff5a60] text-white font-bold shadow-sm shadow-gray-300 hover:bg-[#f9787c] duration-100 ease-out">
+            <NavLink className="nav-link" to="/likes">
+              <button>My Likes</button>
             </NavLink>
           </div>
         </div>

@@ -32,30 +32,35 @@ def get_all(
     return repo.get_all()
 
 
-@router.get("/likes/{liked_by}", response_model=Union[List[LikesOut], Error])
+@router.get("/likes/{liked_by}", response_model=Union[List[LikesOutWithAccount], Error])
 def get_all_likes_by_user(
     liked_by: int,
     response: Response,
     repo: LikesQueries = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
-) -> LikesOut:
-    likes = repo.get_likes_by_user(liked_by)
+) -> LikesOutWithAccount:
+    likes = repo.get_all_likes_by_user(liked_by)
+    if account_data["id"] != likes.liked_by:
+        raise HTTPException(
+            status_code=666, detail="You must be logged in to see your likes."
+        )
     if likes is None:
         response.status_code = 404
     return likes
 
 
 @router.delete(
-    "/likes/{liked_by}",
+    "/likes/{likes_id}",
     response_model=bool,
 )
 def delete_like(
-    liked_by: int,
+    likes_id: int,
     repo: LikesQueries = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 ) -> bool:
-    if account_data["id"] != liked_by:
+    like = repo.get_like_by_id(likes_id)
+    if account_data["id"] != like.liked_by:
         raise HTTPException(
             status_code=403, detail="Cannot delete other people's likes."
         )
-    return repo.delete(liked_by)
+    return repo.delete(likes_id)
