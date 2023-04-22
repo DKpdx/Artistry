@@ -1,6 +1,8 @@
 import { useAuthContext, fetchWithToken } from "@galvanize-inc/jwtdown-for-react";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "@galvanize-inc/jwtdown-for-react";
 
 function UpdateAccountForm() {
     const [account, setAccount] = useState([]);
@@ -11,7 +13,29 @@ function UpdateAccountForm() {
     const [zipcode, setZipcode] = useState("");
     const { token } = useAuthContext();
     const navigate = useNavigate();
+    const { setToken } = useContext(AuthContext);
+    const handleLogout = async () => {
+    try {
+        await fetch(`${process.env.REACT_APP_USER_SERVICE_API_HOST}/token`, {
+        method: "DELETE",
+        credentials: "include",
+        });
+        setToken(null);
+        document.cookie =
+        "fastapi_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        navigate("/Login");
+    } catch (error) {
+        console.error(error);
+    }
+    };
 
+
+    useEffect(() => {
+        fetchAccount();
+    }, []);
+    
+
+    
     const fetchAccount = async () => {
     const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/token`;
     const response = await fetch(url, {
@@ -22,13 +46,17 @@ function UpdateAccountForm() {
         const data = await response.json();
         console.log(data);
         setAccount(data.account);
+        setUsername(data.account.username);
+        setEmail(data.account.email);
+        setUser_Pic_Url(data.account.user_pic_url);
+        setBio(data.account.bio);
+        setZipcode(data.account.zipcode);
     } else {
         console.log("Error fetching account:", response.status);
     }
     };
-    useEffect(() => {
-        fetchAccount();
-    }, []);
+
+
 
     const handleSubmit = async (event) =>{
         event.preventDefault();
@@ -38,7 +66,6 @@ function UpdateAccountForm() {
         data.user_pic_url = user_pic_url;
         data.bio = bio;
         data.zipcode = zipcode;
-
 
 
         const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/accounts/${account.id}`;
@@ -62,7 +89,8 @@ function UpdateAccountForm() {
             setBio("");
             setZipcode("");
             fetchAccount();
-            navigate("/accounts/me")
+            handleLogout();
+            navigate("/login")
             
         } else {
             console.error("Error updating account information. Please try again");
@@ -130,7 +158,7 @@ function UpdateAccountForm() {
                 />
                 <label htmlFor="zipcode">zipcode</label>
                 </div>
-                <button className="btn btn-primary">Update</button>
+                <button onClick={handleLogout}>Update</button>
             </form>
             </div>
         </div>
