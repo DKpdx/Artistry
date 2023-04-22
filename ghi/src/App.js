@@ -24,7 +24,7 @@ function App() {
           <Route path="/accounts" element={<CreateAccountForm />} />
           <Route path="/accounts/me" element={<AccountDetails />} />
           <Route path="" element={<Arts />} />
-          <Route path="arts" element={<CreateArtForm />} />
+          <Route path="arts/new" element={<CreateArtForm />} />
         </Routes>
       </div>
     </>

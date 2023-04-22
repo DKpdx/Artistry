@@ -64,8 +64,8 @@ class LikesQueries:
     def get_all(self) -> Union[Error, List[LikesOut]]:
         try:
             with pool.connection() as conn:
-                with conn.cursor() as conn:
-                    result = conn.execute(
+                with conn.cursor() as db:
+                    result = db.execute(
                         """
                         SELECT id
                         , user_id

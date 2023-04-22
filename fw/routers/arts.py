@@ -66,3 +66,10 @@ def delete_art(
     account_data: dict = Depends(authenticator.get_current_account_data),
 ) -> bool:
     return repo.delete(art_id)
+
+@router.get("/accounts/{user_id}/arts", response_model=List[ArtOutWithAccount])
+def get_art_by_user_id(
+    user_id: int,
+    repo: ArtQueries = Depends(),
+) -> List[ArtOutWithAccount]:
+    return repo.get_art_by_user_id(user_id)
