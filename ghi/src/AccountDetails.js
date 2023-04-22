@@ -21,7 +21,7 @@ function AccountDetails() {
   };
 
   useEffect(() => {
-    fetchAccount();
+    fetchAccount([]);
   }, []);
 
   console.log(account);

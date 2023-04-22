@@ -71,6 +71,11 @@ const Navbar = () => {
               <button>Create Account</button>
             </NavLink>
           </div>
+          <div className="flex items-center border px-4 py-2 rounded-full gap-3 bg-[#ff5a60] text-white font-bold shadow-sm shadow-gray-300 hover:bg-[#f9787c] duration-100 ease-out">
+            <NavLink className="nav-link" to="/accounts/id">
+              <button>Update Account</button>
+            </NavLink>
+          </div>
         </div>
       </div>
     </div>
