@@ -17,6 +17,9 @@ import { AuthContext } from "@galvanize-inc/jwtdown-for-react";
     const { token } = useAuthContext();
     const navigate = useNavigate();
     const { setToken } = useContext(AuthContext);
+
+
+    
     const handleLogout = async () => {
         try {
         await fetch(`${process.env.REACT_APP_USER_SERVICE_API_HOST}/token`, {
