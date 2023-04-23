@@ -13,11 +13,11 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-cream-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex items-center justify-center bg-cream-50  py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-lg shadow-lg">
         <div>
           <h5 className="text-center text-2xl font-bold text-gray-900">
-            Login
+            Welcome Back Art Enjoyer!
           </h5>
         </div>
         <form onSubmit={(e) => handleSubmit(e)} className="mt-8 space-y-6">
@@ -51,7 +51,7 @@ const LoginForm = () => {
             <input
               className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-orange-500 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-400"
               type="submit"
-              value="login"
+              value="Login"
             />
           </div>
         </form>

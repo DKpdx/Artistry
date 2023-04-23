@@ -47,17 +47,13 @@ def get_all_likes_by_user(
 
 @router.delete(
     "/likes/{likes_id}",
-    "/likes/{likes_id}",
     response_model=bool,
 )
 def delete_like(
     likes_id: int,
-    likes_id: int,
     repo: LikesQueries = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 ) -> bool:
-    like = repo.get_like_by_id(likes_id)
-    if account_data["id"] != like.liked_by:
     like = repo.get_like_by_id(likes_id)
     if account_data["id"] != like.liked_by:
         raise HTTPException(

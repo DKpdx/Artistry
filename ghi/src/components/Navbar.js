@@ -5,6 +5,7 @@ import { BiWorld, BiUser } from "react-icons/bi";
 import { FiMenu, FiSearch } from "react-icons/fi";
 import { useContext } from "react";
 import { AuthContext } from "@galvanize-inc/jwtdown-for-react";
+import DarkModeSwitch from "./DarkModeSwitch";
 
 const Navbar = () => {
   const { setToken } = useContext(AuthContext);
@@ -25,7 +26,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="border-b sticky top-0 z-50 bg-white/[95%]">
+    <div className="border-b sticky top-0 z-50 bg-white/[95%] ">
       <div className="flex justify-between items-center sm:px-6 md:px-10 lg:px-12">
         {/* Left */}
         <div className="h-20 flex">
@@ -71,11 +72,12 @@ const Navbar = () => {
               <button>Create Account</button>
             </NavLink>
           </div>
-          <div className="flex items-center border px-4 py-2 rounded-full gap-3 bg-[#ff5a60] text-white font-bold shadow-sm shadow-gray-300 hover:bg-[#f9787c] duration-100 ease-out">
+          <div className="flex items-center border px-4 py-2 rounded-full gap-3 bg-orange-500 hover:bg-orange-600 text-white font-bold focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-400">
             <NavLink className="nav-link" to="/accounts/id">
               <button>Update Account</button>
             </NavLink>
           </div>
+          <DarkModeSwitch />
         </div>
       </div>
     </div>

@@ -27,7 +27,7 @@ function App() {
           <Route path="/accounts/me" element={<AccountDetails />} />
           <Route path="/accounts/id" element={<UpdateAccountForm />} />
           <Route path="" element={<Arts />} />
-          <Route path="/arts" element={<CreateArtForm />} />
+          <Route path="/arts/new" element={<CreateArtForm />} />
           <Route path="/arts/:art_id/update" element={<UpdateArtForm />} />
         </Routes>
       </div>

@@ -1,10 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  darkMode: "class",
   theme: {
     extend: {
       backgroundColor: {
-        "cream-50": "#F5F5DC",
+        "cream-50": "#FAF0E6",
       },
     },
   },
