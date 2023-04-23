@@ -6,7 +6,7 @@ steps = [
             id SERIAL PRIMARY KEY NOT NULL,
             user_id INT references users(id) NOT NULL,
             art_id INT references arts(id) NOT NULL,
-            liked_by INT references users(id) NOT NULL,
+            liked_by INT references users(id) ON DELETE CASCADE NOT NULL,
             created_at timestamp NOT NULL DEFAULT NOW()
         );
         """,
