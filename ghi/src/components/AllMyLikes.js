@@ -1,40 +1,81 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useCallback } from "react";
+import ArtsContext from "./ArtsContext";
 import { AuthContext } from "@galvanize-inc/jwtdown-for-react";
-import Like from "./Like";
+import Art from "./Art";
 
 const AllMyLikes = () => {
   const { token } = useContext(AuthContext);
+  const [isLoading, setIsLoading] = useState(true);
   const [likes, setLikes] = useState([]);
+  const [filteredArts, setFilteredArts] = useState([]);
+  const arts = useContext(ArtsContext);
 
 
-  useEffect(() =>{
-    if(token){
-      fetchLikedArts(likes);
-    }else{
-      return;
+  const handleDelete = (id) => {
+    const revisedLikes = likes.filter((likes) => likes.id !== id);
+    setLikes(revisedLikes);
+  };
+
+  const fetchLikes = useCallback(async () => {
+    const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/likes`;
+    const fetchConfig = {
+      method: "get",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    try {
+      const response = await fetch(url, fetchConfig);
+      if (!response.ok) {
+        throw new Error("Fetch likes failed.");
+      }
+
+      const data = await response.json();
+      setIsLoading(false);
+      setLikes(data);
+
+    } catch (error) {
+      console.error("Error fetching likes data: ", error);
     }
-  },);
-}
+}, [token]);
 
-const fetchLikedArts = async (likes, handleDelete) => {
-  // const response = await fetch`${process.env.REACT_APP_USER_SERVICE_API_HOST}/likes',
+  useEffect(() => {
+    fetchLikes();
+  }, [fetchLikes]);
+
+  const filterArts = useCallback(() => {
+    const likedArts = arts.filter((art) =>
+    likes.some((like) => like.art_id === art.id)
+    );
+    setFilteredArts(likedArts);
+  }, [arts, likes]);
+
+  useEffect(() => {
+    filterArts();
+  }, [arts, likes, filterArts]);
 
   return (
-    <div className="all-my-likes">
-    <h2>All your liked whatevers...</h2>
-      {likes.map((likes) => (
-      <Like key={likes.id}>
-      <button onClick={() => handleDelete(likes.id)}>remove this whatever</button>
-      </Like>
-  ))}
-    </div>
+    <div className="py-3 sm:py-5 ">
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+        {isLoading && <div>Loading...</div>}
+        {filteredArts.map((art) => (
+          <Art
+            key={art.id}
+            artist={art.user_id}
+            title={art.title}
+            image={art.art_pic_url}
+            description={art.description}
+            price={art.price}
+          />
+          ))}
+            <button
+            onClick={handleDelete}>remove this whatever
+            </button>
+        </div>
+      </div>
   );
-}
-
+};
 
 export default AllMyLikes;
-
-// artist={likes.user_id}
-// art={likes.art_id}
-// me={likes.liked_by}
-// date={likes.created_at}
