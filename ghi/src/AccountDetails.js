@@ -22,7 +22,7 @@ function AccountDetails() {
 
   useEffect(() => {
     fetchAccount([]);
-  }, []);
+  }, [token]);
 
   console.log(account);
 
