@@ -5,7 +5,6 @@ import { BiWorld, BiUser } from "react-icons/bi";
 import { FiMenu, FiSearch } from "react-icons/fi";
 import { useContext } from "react";
 import { AuthContext } from "@galvanize-inc/jwtdown-for-react";
-import DarkModeSwitch from "./DarkModeSwitch";
 
 const Navbar = () => {
   const { setToken } = useContext(AuthContext);
@@ -77,7 +76,6 @@ const Navbar = () => {
               <button>Update Account</button>
             </NavLink>
           </div>
-          <DarkModeSwitch />
         </div>
       </div>
     </div>

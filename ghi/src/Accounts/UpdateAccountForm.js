@@ -111,18 +111,12 @@ function UpdateAccountForm() {
             </div>
             <div className="form-floating mb-3">
               <input
-                id={id}
                 type="text"
-                className={`appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 ${
-                  index === 0
-                    ? "rounded-t-md"
-                    : index === 4
-                    ? "rounded-b-md"
-                    : ""
-                } focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm`}
-                value={value}
-                onChange={(event) => setter(event.target.value)}
-                placeholder={label}
+                className="form-control"
+                id="email"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                placeholder="email"
               />
               <label htmlFor="email">Email</label>
             </div>
