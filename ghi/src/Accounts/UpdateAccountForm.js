@@ -19,7 +19,8 @@ function UpdateAccountForm() {
     const { setToken } = useContext(AuthContext);
 
 
-    const handleDeleteAccount = async () => {
+    
+    const handleLogout = async () => {
         try {
             const response = await fetch(`${process.env.REACT_APP_USER_SERVICE_API_HOST}/accounts/${account.id}`, {
                 method: "DELETE",
