@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
+import { HeartContextProvider } from './state/HeartContext';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -13,7 +14,9 @@ root.render(
       <AuthProvider
         tokenUrl={`${process.env.REACT_APP_USER_SERVICE_API_HOST}/token`}
       >
-        <App />
+        <HeartContextProvider>
+          <App />
+        </HeartContextProvider>
       </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>
