@@ -189,6 +189,20 @@ class AccountQueries:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
+                    # db.execute(
+                    #     """
+                    #     DELETE FROM likes
+                    #     WHERE liked_by = %s
+                    #     """,
+                    #     [id],
+                    # )
+                    # db.execute(
+                    #     """
+                    #     DELETE FROM arts
+                    #     WHERE user_id = %s
+                    #     """,
+                    #     [id],
+                    # )
                     db.execute(
                         """
                         DELETE FROM users
