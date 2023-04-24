@@ -1,3 +1,5 @@
-import React from "react";
-const ArtsContext = React.createContext();
+import { createContext } from "react";
+const ArtsContext = createContext([])
+
+
 export default ArtsContext;

@@ -9,6 +9,7 @@ const AllMyLikes = () => {
   const [likes, setLikes] = useState([]);
   const [filteredArts, setFilteredArts] = useState([]);
   const arts = useContext(ArtsContext);
+  console.log("Arts data:", arts);
 
 
   const handleDelete = (id) => {
@@ -33,6 +34,7 @@ const AllMyLikes = () => {
       }
 
       const data = await response.json();
+      console.log('Fetched likes data:', data);
       setIsLoading(false);
       setLikes(data);
 
@@ -45,34 +47,43 @@ const AllMyLikes = () => {
     fetchLikes();
   }, [fetchLikes]);
 
+
   const filterArts = useCallback(() => {
-    const likedArts = arts.filter((art) =>
-    likes.some((like) => like.art_id === art.id)
-    );
-    setFilteredArts(likedArts);
+    if (arts.length > 0)  {
+      const likedArts = arts.filter((art) =>
+        likes.some((like) => like.art_id === art.id)
+      );
+      console.log("Filtered arts:", likedArts);
+      setFilteredArts(likedArts);
+    }
   }, [arts, likes]);
 
   useEffect(() => {
+    console.log("Arts and likes before filtering:", arts, likes);
     filterArts();
   }, [arts, likes, filterArts]);
+
+
 
   return (
     <div className="py-3 sm:py-5 ">
       <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
         {isLoading && <div>Loading...</div>}
         {filteredArts.map((art) => (
+          <React.Fragment key={art.id}>
           <Art
-            key={art.id}
+            id={art.id}
             artist={art.user_id}
             title={art.title}
             image={art.art_pic_url}
             description={art.description}
             price={art.price}
           />
-          ))}
             <button
-            onClick={handleDelete}>remove this whatever
+            onClick={() => handleDelete(art.id)}>remove this whatever
             </button>
+            </React.Fragment>
+          ))}
         </div>
       </div>
   );

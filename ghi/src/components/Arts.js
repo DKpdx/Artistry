@@ -9,6 +9,10 @@ const Arts = () => {
     fetchArts();
   }, []);
 
+  useEffect(() => {
+    console.log("Arts updated in Arts Component:", arts);
+  }, [arts]);
+
   const fetchArts = async () => {
     try {
       const response = await fetch(
@@ -43,4 +47,6 @@ const Arts = () => {
     </ArtsContext.Provider>
   );
 };
-export default Arts;
+
+export {Arts}
+export default Arts
