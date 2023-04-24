@@ -39,3 +39,7 @@ Team worked more on deployment aspect and then delegated working on some of our 
 
 4/19/23
 I got the account details page to pull the account details from a signed in user from the back endpoint. This was accomplished using the Token from being signed in to match the user up with the db on the backend. Also adjusted the Create account from to send it to the endpoint using the url that works upon deployment.
+
+
+4/20/23
+We all worked on helping get more of the FE working so that all of the team has their basic rubric requirements covered. I then did the get all accounts unit test and set it all up for the rest of the team to implement their own in the tests folder.

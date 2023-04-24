@@ -24,4 +24,20 @@ I worked on the the art cards for the MainPage, I have a working demo but nothin
 
 April 12, 2023
 
-I'm working on adding tailwind to our stack so we can make the front-end look better than I could with basic CSS. We still have a lot features to add. As for the likes page, I think we might be able to use the categories feature on the MainPage as a way to filter a user's liked art. So instead of making a whole new page, we can just filter what they liked on the one page.
+I'm working on adding tailwind to our stack so we can make the front-end look better than I could with basic CSS. We still have a lot features to add. As for the likes page, I think we might be able to use the categories feature on the MainPage as a way to filter a user's liked art. So instead of making a whole new page, we can just filter what they liked on the one page. I'm going to actually take some days for a break and get back to adjusting things over the weekend.
+
+April 17, 2023
+
+Today the Instructors suggested we at least start the idea of deploying our app. I drove code while the others supervised. We were able to complete step 1 really fast and then we got stuck on steps 2-3.
+
+April 18, 2023
+
+Today we continued to try and work on the deployment, we reviewed the code entered and made some changes, so now we think steps 2-3 are complete but we have no way of knowing because we are still facing difficulties on the gitlab side.
+
+April 19, 2023
+
+Today we took a break from deployment and tried to get some frontend work done. I changed some things for our main page and partner-programmed with Peter to help with the CreateArtForm.js debugging. Today was pretty productive until the update account form debugging, which stopped our momentum for the day.
+
+April 20, 2023
+
+We still have so much to do

@@ -46,16 +46,17 @@ def get_all_likes_by_user(
 
 
 @router.delete(
-    "/likes/{liked_by}",
+    "/likes/{likes_id}",
     response_model=bool,
 )
 def delete_like(
-    liked_by: int,
+    likes_id: int,
     repo: LikesQueries = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 ) -> bool:
-    if account_data["id"] != liked_by:
+    like = repo.get_like_by_id(likes_id)
+    if account_data["id"] != like.liked_by:
         raise HTTPException(
             status_code=403, detail="Cannot delete other people's likes."
         )
-    return repo.delete(liked_by)
+    return repo.delete(likes_id)

@@ -1,4 +1,24 @@
 ## Journals
+## 4/20/23
+Today I finished the updated form. It's still not updating everything on the front end immediatly, but will update after being logged out.
+
+Danny and I peer programed on writing unit test for get all accounts and  get accounts by id. 
+
+## 4/19/23
+Today we worked as group on some bug fixes. I got my update account form to work, but we are still getting errors in the console.
+
+Danny was able to get his detail of accounts working.
+
+## 4/18/23
+Today we worked on deployment a little bit then we split off and worked on our front end components.
+
+I pair programmed with Danny because we are working on related components, he's working on an account detail page and I am working on the account update page.
+
+## 4/17/ 23
+I was absent, sitting in a car all day
+
+## 4/7/23
+Today I unsuccessfully worked on making a unit test. I think there might have been something wrong with the install of pytest, so I tried to start working on my frontend component.
 
 ## 4/6/23
 Today as a group we worked on the endpoints for the likes feature that Danny finished his endpoint, I finished my endpoint, and we are still working on figuring Heathers out.
