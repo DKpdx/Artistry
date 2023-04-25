@@ -1,23 +1,22 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
 
 function ArtDetail() {
   const [art, setArt] = useState([]);
   const { art_id } = useParams();
 
-  const fetchArt = async () => {
+  const fetchArt = useCallback(async () => {
     const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/arts/${art_id}`;
     const response = await fetch(url);
     if (response.ok) {
       const data = await response.json();
       setArt(data);
     }
-  };
+  }, [art_id]);
 
   useEffect(() => {
     fetchArt();
-  }, []);
+  }, [fetchArt]);
 
   return art ? (
     <div className="py-3 sm:py-5">
