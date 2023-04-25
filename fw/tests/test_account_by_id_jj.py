@@ -48,7 +48,6 @@ def test_get_account_by_id():
 def test_get_account_by_invalid_id():
     app_override_setup()
 
-
     id = 99999
     response = client.get(f"/accounts/{id}")
     assert response.status_code == 404

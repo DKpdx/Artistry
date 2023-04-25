@@ -105,7 +105,7 @@ class ArtQueries:
                         ],
                     )
                     return self.art_in_to_out(art_id, art, user_id)
-        except Exception as e:
+        except Exception:
             return {"message": "Could not update art"}
 
     def get_all(self) -> Union[List[ArtOutWithAccount], Error]:
@@ -188,7 +188,7 @@ class ArtQueries:
                     )
                     return [
                         self.record_to_art_out(record)
-                            for record in result
+                        for record in result
                         ]
         except Exception:
             return {"message": "Could not get art by user_id"}
