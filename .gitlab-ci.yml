@@ -21,7 +21,7 @@ api-unit-test-job:
     - SIGNING_KEY: "${SIGNING_KEY}"
     - DATABASE_URL: "postgres://postgres:4569185840be45b7@srv-captain--fwvolume/postgres"
   script:
-    - cd sample_service
+    - cd fw
     - pip install -r requirements.txt
     - python -m pytest
 
