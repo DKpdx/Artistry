@@ -61,7 +61,7 @@ class ArtQueries:
                         return None
                     print(record)
                     return self.record_to_art_out(record)
-        except Exception as e:
+        except Exception:
             return {"message": "Could not get art"}
 
     def delete(self, art_id: int) -> bool:
@@ -76,7 +76,7 @@ class ArtQueries:
                         [art_id],
                     )
                     return True
-        except Exception as e:
+        except Exception:
             return False
 
     def update(
@@ -105,7 +105,7 @@ class ArtQueries:
                         ],
                     )
                     return self.art_in_to_out(art_id, art, user_id)
-        except Exception as e:
+        except Exception:
             return {"message": "Could not update art"}
 
     def get_all(self) -> Union[List[ArtOutWithAccount], Error]:
@@ -131,7 +131,7 @@ class ArtQueries:
                     return [
                         self.record_to_art_out(record) for record in result
                     ]
-        except Exception as e:
+        except Exception:
             return {"message": "Could not get all arts"}
 
     def create(self, art: ArtIn, user: int) -> ArtOut:
@@ -186,8 +186,11 @@ class ArtQueries:
                         """,
                         [user_id],
                     )
-                    return [self.record_to_art_out(record) for record in result]
-        except Exception as e:
+                    return [
+                        self.record_to_art_out(record)
+                        for record in result
+                        ]
+        except Exception:
             return {"message": "Could not get art by user_id"}
 
     def art_in_to_out(self, id: int, art: ArtIn, user: int):

@@ -1,11 +1,10 @@
 from fastapi import APIRouter, Depends, Response, HTTPException
-from typing import List, Union, Optional
+from typing import List, Union
 from queries.likes import (
     LikesIn,
     LikesOut,
     Error,
     LikesQueries,
-    LikesOutWithAccount,
 )
 from authenticator import authenticator
 
