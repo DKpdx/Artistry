@@ -5,6 +5,7 @@ from authenticator import authenticator
 
 client = TestClient(app)
 
+
 class EmptyArtQueries:
     def get_all(self):
         return [
@@ -20,6 +21,7 @@ class EmptyArtQueries:
             )
         ]
 
+
 test_account = {
     "id": 1,
     "user_id": 1,
@@ -30,8 +32,10 @@ test_account = {
     "price": 100,
 }
 
+
 def account_override():
     return test_account
+
 
 def test_get_all_arts():
 
@@ -54,9 +58,4 @@ def test_get_all_arts():
         "username": "test",
     }]
 
-#     response = client.get("/arts")
-
-#     assert response.status_code == 200
-#     assert response.json() == [all_arts_test]
-
-#     app.dependency_overrides = {}
+    app.dependency_overrides = {}
