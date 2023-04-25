@@ -54,4 +54,9 @@ def test_get_all_arts():
         "username": "test",
     }]
 
-    app.dependency_overrides = {}
+#     response = client.get("/arts")
+
+#     assert response.status_code == 200
+#     assert response.json() == [all_arts_test]
+
+#     app.dependency_overrides = {}

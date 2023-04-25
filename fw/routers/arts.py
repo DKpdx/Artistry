@@ -42,7 +42,7 @@ def update_art(
         else:
             response.status_code = 401
             return {"message": "You're not allowed to update the art"}
-    except:
+    except Exception:
         response.status_code = 404
         return {"message": "Art can't be found"}
 
@@ -66,6 +66,7 @@ def delete_art(
     account_data: dict = Depends(authenticator.get_current_account_data),
 ) -> bool:
     return repo.delete(art_id)
+
 
 @router.get("/accounts/{user_id}/arts", response_model=List[ArtOutWithAccount])
 def get_art_by_user_id(

@@ -1,11 +1,8 @@
-import { useEffect, useState, useContext } from "react";
+import { useContext } from "react";
 import { Routes, Route } from "react-router-dom";
-import Nav from "./Nav.js";
-import Construct from "./Construct.js";
 import { AuthContext } from "@galvanize-inc/jwtdown-for-react";
 import LoginForm from "./LoginForm.js";
 import CreateAccountForm from "./CreateAccountForm.js";
-import ErrorNotification from "./ErrorNotification";
 import AccountDetails from "./AccountDetails.js";
 import UpdateAccountForm from "./Accounts/UpdateAccountForm.js";
 import "./App.css";
