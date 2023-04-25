@@ -19,7 +19,7 @@ api-unit-test-job:
     - lint-test-job
   variables:
     - SIGNING_KEY: "${SIGNING_KEY}"
-    - DATABASE_URL:
+    - DATABASE_URL: "postgres://postgres:4569185840be45b7@srv-captain--fwvolume/postgres"
   script:
     - cd sample_service
     - pip install -r requirements.txt
