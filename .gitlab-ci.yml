@@ -11,16 +11,19 @@ lint-test-job:
     - pip install flake8
     - flake8 fw
 #
-# Run the unit tests
-# api-unit-test-job:
-#   image: python:3-bullseye
-#   stage: test
-#   needs:
-#     - lint-test-job
-#   script:
-#     - cd sample_service
-#     - pip install -r requirements.txt
-#     - python -m pytest
+Run the unit tests
+api-unit-test-job:
+  image: python:3-bullseye
+  stage: test
+  needs:
+    - lint-test-job
+  variables:
+    - SIGNING_KEY: "${SIGNING_KEY}"
+    - DATABASE_URL:
+  script:
+    - cd sample_service
+    - pip install -r requirements.txt
+    - python -m pytest
 
 # Build the React/JavaScript front-end
 build-front-end-job:
@@ -34,7 +37,7 @@ build-front-end-job:
     # You need to substitute in your real values for
     # GROUP_NAME, PROJECT_NAME, & WEBSERVICE_NAME below.
     PUBLIC_URL: https://im-fine-with-whatever.gitlab.io/fine-whatevers
-    REACT_APP_SAMPLE_SERVICE_API_HOST: https://fine-whatevers.dec-pt-14.mod3projects.com
+    REACT_APP_USER_SERVICE_API_HOST: https://fine-whatevers.dec-pt-14.mod3projects.com
   script:
     - cd ghi
     - npm install
