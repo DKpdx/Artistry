@@ -5,6 +5,7 @@ from authenticator import authenticator
 
 client = TestClient(app)
 
+
 class CreateArtQueries:
     def create(self, art, user):
         result = {
@@ -19,6 +20,7 @@ class CreateArtQueries:
         result.update(art)
         return result
 
+
 test_account = {
     "id": 1,
     "username": "test",
@@ -28,8 +30,10 @@ test_account = {
     "zipcode": 12345,
 }
 
+
 def account_override():
     return test_account
+
 
 def test_create_art():
     app.dependency_overrides[ArtQueries] = CreateArtQueries
