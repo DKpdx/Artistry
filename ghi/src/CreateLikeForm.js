@@ -4,11 +4,11 @@ import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
 
 function CreateLikeForm() {
   const { token } = useAuthContext();
-  const [arts, setArts] = useState([]);
+  const [, setArts] = useState([]);
   const [userId, setUserId] = useState("");
   const [artId, setArtId] = useState("");
   const [likedBy, setLikedBy] = useState("");
-  const [account, setAccount] = useState([]);
+  const [, setAccount] = useState([]);
   const navigate = useNavigate();
 
   const handleUserIdChange = (e) => {
@@ -25,7 +25,6 @@ function CreateLikeForm() {
     const value = e.target.value;
     setLikedBy(value);
   };
-
 
   const fetchAccount = async () => {
     const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/token`;
@@ -47,17 +46,17 @@ function CreateLikeForm() {
   }, []);
 
   const fetchArts = async () => {
-      const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/arts`;
-      const response = await fetch(url);
-      if (response.ok) {
-        const data = await response.json();
-        setArts(data.arts);
-      }
-    };
+    const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/arts`;
+    const response = await fetch(url);
+    if (response.ok) {
+      const data = await response.json();
+      setArts(data.arts);
+    }
+  };
 
   useEffect(() => {
-      fetchArts();
-    }, []);
+    fetchArts();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
