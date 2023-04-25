@@ -123,7 +123,13 @@ class AccountQueries:
                 with conn.cursor() as db:
                     result = db.execute(
                         """
-                        SELECT id, username, email, hashed_password, user_pic_url, bio, zipcode
+                        SELECT id,
+                            username,
+                            email,
+                            hashed_password,
+                            user_pic_url,
+                            bio,
+                            zipcode
                         FROM users
                         WHERE username = %s;
                         """,
