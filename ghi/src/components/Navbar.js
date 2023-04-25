@@ -75,6 +75,11 @@ const Navbar = () => {
               <button>Update Account</button>
             </NavLink>
           </div>
+          <div className="flex items-center border px-4 py-2 rounded-full gap-3 bg-orange-500 hover:bg-orange-600 text-white font-bold focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-400">
+            <NavLink className="nav-link" to="/likes">
+              <button>Like</button>
+            </NavLink>
+          </div>
         </div>
       </div>
     </div>
