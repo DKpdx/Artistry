@@ -1,8 +1,7 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
-import { BiWorld, BiUser } from "react-icons/bi";
-import { FiMenu, FiSearch } from "react-icons/fi";
+import { FiSearch } from "react-icons/fi";
 import { useContext } from "react";
 import { AuthContext } from "@galvanize-inc/jwtdown-for-react";
 
@@ -29,7 +28,7 @@ const Navbar = () => {
       <div className="flex justify-between items-center sm:px-6 md:px-10 lg:px-12">
         {/* Left */}
         <div className="h-20 flex">
-          <img src={logo} className="object-cover" />
+          <img alt="picture_lol" src={logo} className="object-cover" />
         </div>
         {/* Middle */}
         <div className="hidden lg:flex justify-center items-center relative shadow-sm shadow-gray-300 border rounded-full">
