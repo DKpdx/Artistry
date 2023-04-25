@@ -29,3 +29,9 @@ Managed to solve the authorization issue on my create art form and managed to ge
 
 Thursday 4/20/2023:
 Worked on an update art form and managed to get it to work. We have a few more components that we need to finish still. I'm going to start working on the art detail page tomorrow.
+
+Monday 4/24/2023:
+We're working on our individual unit test and we're also trying to get deployment to work. We're planning to ask an instructor for help with our deployment tomorrow if we can't get it done by tonight. I also didn't work on the art detail page because Danny already had it started on it before i started it.
+
+Tuesday 4/25/2023:
+We're still working on trying to finish deployment and hopefully get it done by today. Some of us are still working on our unit test, including me, and I also want to work on our READme.
