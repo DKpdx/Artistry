@@ -20,7 +20,7 @@ api-unit-test-job:
   script:
     - cd fw
     - pip install -r requirements.txt
-    - export DATABASE_URL= "postgres://postgres:4569185840be45b7@srv-captain--fwvolume/postgres"
+    - export DATABASE_URL="postgres://postgres:4569185840be45b7@srv-captain--fwvolume/postgres"
     - export SIGNING_KEY="5882a8a70f0a2ac8664a191e8ac761b23ab7bded"
     - python -m pytest
 
