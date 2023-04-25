@@ -16,7 +16,7 @@ function ArtDetail() {
 
   useEffect(() => {
     fetchArt();
-  }, []);
+  }, [art]);
 
   return art ? (
     <div className="py-3 sm:py-5">
