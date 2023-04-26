@@ -44,9 +44,9 @@ If encounter a warning about missing environment variable named OS and macOS, it
 | Method | Action             | URL                                |
 |  ----- | ------------------ | ---------------------------------- |
 |  POST  |  Create an Account  | http://localhost:8000/accounts |
-| PUT | Update Account | http://localhost:8000/accounts/id |
-| GET | Get Account Detail | http://localhost:8000/accounts/me |
-| DEL | Delete Account | http://localhost:8000/accounts/id |
+| PUT | Update Account | http://localhost:8000/accounts/{user_id} |
+| GET | Get Account Detail | http://localhost:8000/accounts/{user_id} |
+| DEL | Delete Account | http://localhost:8000/accounts/{user_id} |
 
  <details>
 <summary><strong>Create Account</strong></summary>
@@ -145,7 +145,7 @@ If encounter a warning about missing environment variable named OS and macOS, it
 | Method | Action             | URL                                |
 |  ----- | ------------------ | ---------------------------------- |
 | POST | Create an Art | http://localhost:8000/arts |
-| PUT | Update Art | http://localhost:8000/arts/{art_id}update |
+| PUT | Update Art | http://localhost:8000/arts/{art_id}/update |
 | GET | List of Arts | http://localhost:8000/arts |
 | GET | Art Detail | http://localhost:8000/arts/{art_id} |
 | DEL | Delete Art | http://localhost:8000/arts/{art_id} |
@@ -162,7 +162,6 @@ If encounter a warning about missing environment variable named OS and macOS, it
     "art_pic_url": "string",
     "description": "string",
     "price": 0
-
 }
 ```
 #### Ouput:
@@ -261,3 +260,8 @@ If encounter a warning about missing environment variable named OS and macOS, it
 ```
 
 </details>
+
+#### Likes
+| Method | Action             | URL                                |
+|  ----- | ------------------ | ---------------------------------- |
+| POST | Create a Like | http://localhost:8000/likes |
