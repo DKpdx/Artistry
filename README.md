@@ -41,7 +41,7 @@ If encounter a warning about missing environment variable named OS and macOS, it
 
 #### Account
 
-| Method | Action             | URL                                |
+| Method | Action | URL |
 |  ----- | ------------------ | ---------------------------------- |
 |  POST  |  Create an Account  | http://localhost:8000/accounts |
 | PUT | Update Account | http://localhost:8000/accounts/{user_id} |
@@ -118,11 +118,11 @@ If encounter a warning about missing environment variable named OS and macOS, it
 ```
 {
 	"id": 0,
-    "username": "string",
-    "email": "string",
-    "user_pic_url": "string",
-    "bio": "string",
-    "zipcode": 0
+  "username": "string",
+  "email": "string",
+  "user_pic_url": "string",
+  "bio": "string",
+  "zipcode": 0
 }
 ```
 
