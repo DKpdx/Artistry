@@ -37,9 +37,6 @@ const Navbar = () => {
             placeholder=""
             className="py-2.5 w-[20rem] rounded-full outline-0"
           />
-          {/* <div className="flex justify-between absolute w-full pr-16 pl-6 font-semibold text-gray-500">
-            <button className="w-full">Location</button>
-          </div> */}
           <div className="bg-[#ff5a60] p-2 rounded-full mr-2">
             <FiSearch className="text-white w-full" />
           </div>
@@ -51,7 +48,6 @@ const Navbar = () => {
           </NavLink>
           <div className="flex items-center border px-4 py-2 rounded-full gap-3 bg-orange-500 hover:bg-orange-600 text-white font-bold focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-400">
             <NavLink className="navbar-brand" to="/accounts/me">
-              {/* <BiUser className="text-[16px]" /> */}
               <button className="">My Account</button>
             </NavLink>
           </div>
