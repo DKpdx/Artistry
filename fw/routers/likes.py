@@ -32,15 +32,21 @@ def get_all(
 
 
 @router.get("/likes/{liked_by}", response_model=Union[List[LikesOut], Error])
-def get_all_likes_by_user(
+def get_likes_by_user(
     liked_by: int,
-    response: Response,
     repo: LikesQueries = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 ) -> LikesOut:
     likes = repo.get_likes_by_user(liked_by)
-    if likes is None:
-        response.status_code = 404
+    for like in likes:
+        if account_data["id"] != like.liked_by:
+            raise HTTPException(
+                status_code=403, detail="You can't see other people's likes."
+                )
+        if likes is None:
+            raise HTTPException(
+                status_code=404, detail="You haven't liked anything yet."
+                )
     return likes
 
 
