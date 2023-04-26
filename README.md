@@ -46,9 +46,7 @@ If encounter a warning about missing environment variable named OS and macOS, it
   * The other user that liked the art, will store their liked arts under their account
   * The other user that liked the art, will store their liked arts under their account
 
-## API Overview
-
-#### FastAPI Endpoints
+## FastAPI Overview
 
 #### Account
 
