@@ -43,4 +43,4 @@ If encounter a warning about missing environment variable named OS and macOS, it
 * The login user can create an art
   * The user can make changes to their art by either updating or deleteing the art
 * Other user is able to like that user's art
-* The other user that liked the art, will store their liked arts under their account
+  * The other user that liked the art, will store their liked arts under their account
