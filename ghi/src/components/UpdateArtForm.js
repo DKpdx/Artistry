@@ -72,10 +72,6 @@ function UpdateArtForm() {
       const response = await fetch(URL, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      if (response.ok) {
-        const data = await response.json();
-        console.log(data);
-      }
     };
     fetchArtData();
   }, [token]);

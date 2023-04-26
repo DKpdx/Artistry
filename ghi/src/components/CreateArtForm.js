@@ -167,37 +167,5 @@ function CreateArtForm() {
       </div>
     </div>
   );
-
-  // return (
-  //     <div className="row">
-  //         <div className="shadow p-4 mt-4">
-  //             <h1>Create Art</h1>
-  //             <form id="create-art-form" onSubmit={handleSubmit}>
-  //                 <div className="form-floating mb-3">
-  //                     <input placeholder="Title" required type="text" name="title" id="title" className="form-control" onChange={handleTitleChange} value={title}/>
-  //                     <label htmlFor="title">Title</label>
-  //                 </div>
-  //                 <div className="form-floating mb-3">
-  //                     <input placeholder="Category" required type="text" name="category" id="category" className="form-control"
-  //                     onChange={handleCategoryChange} value={category}/>
-  //                     <label htmlFor="category">Category</label>
-  //                 </div>
-  //                 <div className="form-floating mb-3">
-  //                     <input placeholder="Art Picture" required type="text" name="art_picture" id="art_picture" className="form-control" onChange={handleArtPictureChange} value={artPicture}/>
-  //                     <label htmlFor="art_picture">Art Picture</label>
-  //                 </div>
-  //                 <div className="form-floating mb-3">
-  //                     <input placeholder="Description" required type="text" name="description" id="description" className="form-control" onChange={handleDescriptionChange} value={description}/>
-  //                     <label htmlFor="description">Description</label>
-  //                 </div>
-  //                 <div className="form-floating mb-3">
-  //                     <input placeholder="Price" required type="text" name="price" id="price" className="form-control" onChange={handlePriceChange} value={price}/>
-  //                     <label htmlFor="price">Price</label>
-  //                 </div>
-  //                 <button className="btn btn-primary">Create</button>
-  //             </form>
-  //         </div>
-  //     </div>
-  // )
 }
 export default CreateArtForm;

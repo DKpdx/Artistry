@@ -1,17 +1,17 @@
 import { useContext } from "react";
 import { Routes, Route } from "react-router-dom";
 import { AuthContext } from "@galvanize-inc/jwtdown-for-react";
-import LoginForm from "./LoginForm.js";
-import CreateAccountForm from "./CreateAccountForm.js";
-import AccountDetails from "./AccountDetails.js";
-import UpdateAccountForm from "./Accounts/UpdateAccountForm.js";
+import LoginForm from "./components/LoginForm.js";
+import CreateAccountForm from "./components/CreateAccountForm.js";
+import AccountDetails from "./components/AccountDetails.js";
+import UpdateAccountForm from "./components/UpdateAccountForm.js";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Arts from "./components/Arts";
-import CreateArtForm from "./CreateArtForm.js";
-import UpdateArtForm from "./UpdateArtForm.js";
-import ArtDetail from "./ArtDetail.js";
-import CreateLikeForm from "./CreateLikeForm.js";
+import CreateArtForm from "./components/CreateArtForm.js";
+import UpdateArtForm from "./components/UpdateArtForm.js";
+import ArtDetail from "./components/ArtDetail.js";
+import CreateLikeForm from "./components/CreateLikeForm.js";
 
 function App() {
   const { token } = useContext(AuthContext);
