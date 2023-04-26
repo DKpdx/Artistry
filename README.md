@@ -14,7 +14,7 @@ Fine Whatever is a web application that allows user to appreciate other user's a
 
 ## Project Diagram
 
-![image](/uploads/9344fcfdf34f5055f98dcd394ed28f5c/image.png)
+![image](/uploads/170867856e84ec83f0924c3e4e1902f2/image.png)
 
 ## Getting Started
 
@@ -98,12 +98,12 @@ If encounter a warning about missing environment variable named OS and macOS, it
 #### Ouput:
 ```
 {
-      "id": 0,
-      "username": "string",
-      "email": "string",
-      "user_pic_url": "string",
-      "bio": "string",
-      "zipcode": 0
+    "id": 0,
+    "username": "string",
+    "email": "string",
+    "user_pic_url": "string",
+    "bio": "string",
+    "zipcode": 0
 }
 ```
 
@@ -117,12 +117,12 @@ If encounter a warning about missing environment variable named OS and macOS, it
 
 ```
 {
-			"id": 0,
-      "username": "string",
-      "email": "string",
-      "user_pic_url": "string",
-      "bio": "string",
-      "zipcode": 0
+	"id": 0,
+    "username": "string",
+    "email": "string",
+    "user_pic_url": "string",
+    "bio": "string",
+    "zipcode": 0
 }
 ```
 
@@ -134,7 +134,7 @@ If encounter a warning about missing environment variable named OS and macOS, it
 
 ```
 {
-			true
+	true
 }
 ```
 
@@ -237,14 +237,14 @@ If encounter a warning about missing environment variable named OS and macOS, it
 
 ```
 {
-			"id": 0,
-      "user_id": 0,
-      "title": "string",
-      "category": "string",
-      "art_pic_url": "string",
-      "description": "string",
-      "price": 0,
-      "username": "string"
+    "id": 0,
+    "user_id": 0,
+    "title": "string",
+    "category": "string",
+    "art_pic_url": "string",
+    "description": "string",
+    "price": 0,
+    "username": "string"
 }
 ```
 
@@ -256,7 +256,7 @@ If encounter a warning about missing environment variable named OS and macOS, it
 
 ```
 {
-			true
+	true
 }
 ```
 
