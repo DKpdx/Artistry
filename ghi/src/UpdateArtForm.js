@@ -81,81 +81,89 @@ function UpdateArtForm() {
   }, [token]);
 
   return (
-    <div className="row">
-      <div className="offset-3 col-6">
-        <div className="shadow p-4 mt-4">
-          <h1>Update Art</h1>
-          <form id="update-art-form" onSubmit={handleSubmit}>
-            <div className="form-floating mb-3">
-              <input
-                onChange={handleTitleChange}
-                placeholder="Title"
-                required
-                type="text"
-                name="title"
-                id="title"
-                className="form-control"
-                value={title}
-              />
-              <label htmlFor="title">Title</label>
+    <>
+      <div className="min-h-screen flex items-center justify-center bg-cream-50 py-12 px-0 sm:px-0 lg:px-0">
+        <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-lg shadow-lg">
+          <div>
+            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+              Update Art
+            </h2>
+          </div>
+          <form onSubmit={handleSubmit} className="mt-8 space-y-6">
+            <div className="rounded-md shadow-sm -space-y-px">
+              <div>
+                <label htmlFor="title" className="sr-only">
+                  Title
+                </label>
+                <input
+                  onChange={handleTitleChange}
+                  placeholder="Title"
+                  required
+                  type="text"
+                  name="title"
+                  id="title"
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  value={title}
+                />
+              </div>
+              <div>
+                <label htmlFor="category" className="sr-only">
+                  Category
+                </label>
+                <input
+                  onChange={handleCategoryChange}
+                  placeholder="Category"
+                  required
+                  type="text"
+                  name="category"
+                  id="category"
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  value={category}
+                />
+              </div>
+              <div>
+                <label htmlFor="art_picture" className="sr-only">
+                  Art Picture
+                </label>
+                <input
+                  onChange={handleArtPictureChange}
+                  placeholder="Art Picture"
+                  required
+                  type="text"
+                  name="art_picture"
+                  id="art_picture"
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  value={artPicture}
+                />
+              </div>
+              <div>
+                <label htmlFor="description" className="sr-only">
+                  Description
+                </label>
+                <input
+                  onChange={handleDescriptionChange}
+                  placeholder="Description"
+                  required
+                  type="text"
+                  name="description"
+                  id="description"
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  value={description}
+                />
+              </div>
             </div>
-            <div className="form-floating mb-3">
-              <input
-                onChange={handleCategoryChange}
-                placeholder="Category"
-                required
-                type="text"
-                name="category"
-                id="category"
-                className="form-control"
-                value={category}
-              />
-              <label htmlFor="category">Category</label>
+            <div>
+              <button
+                type="submit"
+                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-orange-500 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
+              >
+                Update Art
+              </button>
             </div>
-            <div className="form-floating mb-3">
-              <input
-                onChange={handleArtPictureChange}
-                placeholder="Art Picture"
-                required
-                type="text"
-                name="art_picture"
-                id="art_picture"
-                className="form-control"
-                value={artPicture}
-              />
-              <label htmlFor="art_picture">Art Picture</label>
-            </div>
-            <div className="form-floating mb-3">
-              <input
-                onChange={handleDescriptionChange}
-                placeholder="Description"
-                required
-                type="text"
-                name="description"
-                id="description"
-                className="form-control"
-                value={description}
-              />
-              <label htmlFor="description">Description</label>
-            </div>
-            <div className="form-floating mb-3">
-              <input
-                onChange={handlePriceChange}
-                placeholder="Price"
-                required
-                type="text"
-                name="price"
-                id="price"
-                className="form-control"
-                value={price}
-              />
-              <label htmlFor="price">Price</label>
-            </div>
-            <button className="btn btn-primary">Update</button>
           </form>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 export default UpdateArtForm;

@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from "react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
+import { useNavigate } from "react-router-dom";
 
 function AccountDetails() {
   const [account, setAccount] = useState([]);
   const { token } = useToken();
+  const navigate = useNavigate();
+
+  const goToUpdateAccount = () => {
+    navigate("/accounts/id");
+  };
 
   const fetchAccount = async () => {
     const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/token`;
@@ -61,6 +67,14 @@ function AccountDetails() {
             ))}
           </div>
         )}
+        <div className="mt-4">
+          <button
+            className="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-orange-500 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400"
+            onClick={goToUpdateAccount}
+          >
+            Update Account
+          </button>
+        </div>
       </div>
     </div>
   );
