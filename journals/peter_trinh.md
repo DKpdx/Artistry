@@ -34,4 +34,7 @@ Monday 4/24/2023:
 We're working on our individual unit test and we're also trying to get deployment to work. We're planning to ask an instructor for help with our deployment tomorrow if we can't get it done by tonight. I also didn't work on the art detail page because Danny already had it started on it before i started it.
 
 Tuesday 4/25/2023:
-We're still working on trying to finish deployment and hopefully get it done by today. Some of us are still working on our unit test, including me, and I also want to work on our READme.
+We're still working on trying to finish deployment and hopefully get it done by today. Some of us are still working on our unit test, including me, and I also want to work on our READme. We got deployment done last night which was a huge relieve for us.
+
+Wednesday 4/26/2034:
+The team is working on cleaning up the code of commented out code and console.logs. Some of us are working on styling of the webpage, while I'm working on our READme.
