@@ -38,7 +38,6 @@ function UpdateAccountForm() {
     }
   };
 
-  //------  Logout on click------
   const handleLogout = async () => {
     try {
       await fetch(`${process.env.REACT_APP_USER_SERVICE_API_HOST}/token`, {
@@ -48,7 +47,6 @@ function UpdateAccountForm() {
       setToken(null);
       document.cookie =
         "fastapi_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      navigate("/Login");
     } catch (error) {
       console.error(error);
     }
@@ -159,7 +157,7 @@ function UpdateAccountForm() {
                   id="user_pic_url"
                   value={user_pic_url}
                   onChange={(event) => setUser_Pic_Url(event.target.value)}
-                  placeholder="optional"
+                  placeholder="Picture URL"
                 />
               </div>
               <div className="form-floating mb-3">
@@ -169,7 +167,7 @@ function UpdateAccountForm() {
                   id="bio"
                   value={bio}
                   onChange={(event) => setBio(event.target.value)}
-                  placeholder="optional"
+                  placeholder="Bio"
                 />
               </div>
               <div className="form-floating mb-3">
