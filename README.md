@@ -25,21 +25,28 @@ Please have Docker downloaded before continuing with the following steps:
 2. In the terminal, type https://gitlab.com/im-fine-with-whatever/fine-whatevers
 3. Switch to the directory
 
-Running Docker
+**Running Docker**
 ```
 docker volume create fwvolume
 docker-compose build
 docker-compose up
 ```
 
-Note
+**Note**
+
 If encounter a warning about missing environment variable named OS and macOS, it can be safely ingored
 
 ## API Overview
 
 #### Fine Whatever FastAPI
 
-Fine Whatever utilizes FastAPI for our backend to let users to create, update, and delete account. FastApi also allows the user to create, update, delete, and like art.
+Fine Whatever utilizes FastAPI for our backend to let users to create an account that allows them authorization to make any changes to their account. 
+* They can update their account information, but also delete their account if they wanted to
+Being an authorize user, the user can create an art
+* The user can make changes to their art by updating it or they can delete it
+An authorize user can like other user arts
+
+The account, art, and likes are all store in the database.
 
 #### React
 
@@ -280,3 +287,18 @@ Fine Whatever utilizes FastAPI for our backend to let users to create, update, a
 | Method | Action             | URL                                |
 |  ----- | ------------------ | ---------------------------------- |
 | POST | Create a Like | http://localhost:8000/likes |
+
+<details>
+<summary><strong>Create Like</strong></summary>
+<br>
+
+```
+{
+    "user_id": 0,
+    "art_id": 0,
+    "liked_by": 0,
+    "created_at": "2023-04-26T22:25:18.105Z"
+}
+```
+
+</details>
