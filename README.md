@@ -42,11 +42,12 @@ If encounter a warning about missing environment variable named OS and macOS, it
 
 Fine Whatever utilizes FastAPI for our backend to let users to create an account that allows them authorization to make any changes to their account. 
 * They can update their account information, but also delete their account if they wanted to
+
 Being an authorize user, the user can create an art
 * The user can make changes to their art by updating it or they can delete it
-An authorize user can like other user arts
+* This also allows other user to like their art
 
-The account, art, and likes are all store in the database.
+Each of these backend component are stored in our database.
 
 #### React
 
