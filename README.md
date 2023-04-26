@@ -8,9 +8,9 @@
 * Heather DePesa - Software Developer
 * Peter Trinh - Software Developer
 
-## Design
+## Project Design
 
-Fine Whatever is a web application that allows user to appreciate other user's arts locally and globally.
+Fine Whatever is a web application that allows user to appreciate other user's arts locally and globally. By being a user, you can show your appreication to other user's art by liking their art, or you can post your own art to show-off to other user.
 
 ## Project Diagram
 
@@ -33,16 +33,31 @@ docker-compose up
 ```
 
 Note
-If encounter a warning about missing environment variable named OS and macOS, it can safely ingored
+If encounter a warning about missing environment variable named OS and macOS, it can be safely ingored
 
 ## API Overview
+
+#### Fine Whatever FastAPI
+
+Fine Whatever utilizes FastAPI for our backend to let users to create, update, and delete account. FastApi also allows the user to create, update, delete, and like art.
+
+#### React
+
+* Create/Update/Delete account
+* Have an account detail page
+* Login/Logout account
+* Create/Update/Delete art
+* Have an art detail page
+* Create like art by user
+* Have a list of likes by user
+* Landing Page
 
 #### FastAPI Endpoints
 
 #### Account
 
-| Method | Action | URL |
-|  ----- | ------ | --- |
+| Method | Action             | URL                                |
+|  ----- | ------------------ | ---------------------------------- |
 |  POST  |  Create an Account  | http://localhost:8000/accounts |
 | PUT | Update Account | http://localhost:8000/accounts/{user_id} |
 | GET | Get Account Detail | http://localhost:8000/accounts/{user_id} |
