@@ -10,20 +10,19 @@ lint-test-job:
   script:
     - pip install flake8
     - flake8 fw
-#
+
 # Run the unit tests
-# api-unit-test-job:
-#   image: python:3-bullseye
-#   stage: test
-#   needs:
-#     - lint-test-job
-#   variables:
-#     - SIGNING_KEY: "${SIGNING_KEY}"
-#     - DATABASE_URL: "postgres://postgres:4569185840be45b7@srv-captain--fwvolume/postgres"
-#   script:
-#     - cd sample_service
-#     - pip install -r requirements.txt
-#     - python -m pytest
+api-unit-test-job:
+  image: python:3-bullseye
+  stage: test
+  needs:
+    - lint-test-job
+  script:
+    - cd fw
+    - pip install -r requirements.txt
+    - export DATABASE_URL="postgres://postgres:4569185840be45b7@srv-captain--fwvolume/postgres"
+    - export SIGNING_KEY="5882a8a70f0a2ac8664a191e8ac761b23ab7bded"
+    - python -m pytest
 
 # Build the React/JavaScript front-end
 build-front-end-job:
