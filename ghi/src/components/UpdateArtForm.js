@@ -10,6 +10,7 @@ function UpdateArtForm() {
   const [artPicture, setArtPicture] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
+  const [, setArtData] = useState([]);
 
   const handleTitleChange = (event) => {
     const value = event.target.value;
@@ -72,6 +73,10 @@ function UpdateArtForm() {
       const response = await fetch(URL, {
         headers: { Authorization: `Bearer ${token}` },
       });
+      if (response.ok) {
+        const data = await response.json();
+        setArtData(data);
+      }
     };
     fetchArtData();
   }, [token]);
