@@ -95,34 +95,43 @@ export default ProfilePage;
 // import { useParams, useNavigate } from "react-router-dom";
 
 // function ProfilePage() {
-//     const { id } = useParams();
-//     const navigate = useNavigate();
-//     const [account, setAccount] = useState({});
-//     const [art, setArt] = useState([]);
+//   const { id } = useParams();
+//   const navigate = useNavigate();
+//   const [account, setAccount] = useState({});
+//   const [art, setArt] = useState([]);
 
-//     const fetchArtAndAccount = async () => {
-//         const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/arts?user_id=${id}`;
-//         const response = await fetch(url);
+//   const fetchAccount = async () => {
+//     const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/accounts/${id}`;
+//     const response = await fetch(url, {
+//       method: "GET",
+//     });
 //     if (response.ok) {
-//         const data = await response.json();
-//         const filteredArt = data.filter(artPiece => artPiece.user_id === parseInt(id));
-//         setArt(filteredArt);
-
-//     if (filteredArt.length > 0) {
-//         setAccount(filteredArt[0].user);
-//     }
+//       const data = await response.json();
+//       setAccount(data);
 //     } else {
-//         console.log("Error fetching art:", response.status);
+//       console.log("Error fetching account:", response.status);
 //     }
-// };
+//   };
 
-//     const handleOnClick = (art_id) => {
-//         navigate(`/arts/${art_id}/detail`);
-// };
+//   const fetchArt = async () => {
+//     const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/arts?user_id=${id}`;
+//     const response = await fetch(url);
+//     if (response.ok) {
+//       const data = await response.json();
+//       setArt(data.filter(artPiece => artPiece.user_id === parseInt(id)));
+//     } else {
+//       console.log("Error fetching art:", response.status);
+//     }
+//   };
 
-// useEffect(() => {
-//     fetchArtAndAccount();
-// }, [id]);
+//   const handleOnClick = (art_id) => {
+//     navigate(`/art/${art_id}/detail`);
+//   };
+
+//   useEffect(() => {
+//     fetchAccount();
+//     fetchArt();
+//   }, [id]);
 
 // return (
 // <div className="min-h-screen w-full flex items-center justify-center bg-cream-50 py-12 px-4 sm:px-6 lg:px-8">
