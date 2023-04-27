@@ -1,155 +1,290 @@
-# Module3 Project Gamma
+# Fine Whatever
 
-## Getting started
+#### Team:
 
-to run docker:
+* Chase Whitaker
+* John Jackson
+* Daniel Mitchell
+* Heather DePesa
+* Peter Trinh
 
-docker volume create fwvolume (edited)
+## Intended Audience
 
-docker compose build
+Fine Whatever is a web application that allows user to appreciate other user's arts locally and globally. By being a user, you can show your appreication to other user's art by liking their art, or you can post your own art to show-off to other user.
 
-docker compose up
+## Project Diagram
 
-You have a project repository, now what? The next section
-lists all of the deliverables that are due at the end of the
-week. Below is some guidance for getting started on the
-tasks for this week.
+![image](/uploads/170867856e84ec83f0924c3e4e1902f2/image.png)
 
-## Install Extensions
+## Getting Started
 
-* Prettier: <https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode>
-* Black Formatter: <https://marketplace.visualstudio.com/items?itemName=ms-python.black-formatter>
+#### Cloning Repository
 
-## Deliverables
+Please have Docker downloaded before continuing with the following steps:
+1. In the terminal, change the directory that the project will be clone in
+2. In the terminal, type https://gitlab.com/im-fine-with-whatever/fine-whatevers
+3. Switch to the directory
 
-* [ ] Wire-frame diagrams
-* [ ] API documentation
-* [ ] Project is deployed to Render.com/GitLab-pages
-* [ ] GitLab issue board is setup and in use
-* [ ] Journals
+**Running Docker**
+```
+docker volume create fwvolume
+docker-compose build
+docker-compose up
+```
 
-## Project layout
+**Note**
 
-The layout of the project is just like all of the projects
-you did with `docker-compose` in module #2. You will create
-a directory in the root of the repository for each service
-that you add to your project just like those previous
-projects were setup.
+If encounter a warning about missing environment variable named OS and macOS, it can be safely ingored
 
-### Directories
+## Functionality
 
-Several directories have been added to your project. The
-directories `docs` and `journals` are places for you and
-your team-mates to, respectively, put any documentation
-about your project that you create and to put your
-project-journal entries. See the _README.md_ file in each
-directory for more info.
+* Users can create an account and log into the account
+  * The user can make changes to their account by either updating or deleting the account
+* The login user can create an art
+  * The user can make changes to their art by either updating or deleteing the art
+* Other user is able to like that user's art
+  * The other user that liked the art, will store their liked arts under their account
 
-The other directories, `ghi` and `sample_service`, are
-sample services, that you can start building off of or use
-as a reference point.
+## API Overview
 
-Inside of `ghi` is a minimal React app that has an "under
-construction" page. It is setup similarly to all of the
-other React projects that you have worked on.
+#### Account
 
-Inside of `sample_service` is a minimal FastAPI application.
-"Where are all the files?" you might ask? Well, the
-`main.py` file is the whole thing, and go take look inside
-of it... There's not even much in there..., hmm? That is
-FastAPI, we'll learn more about it in the coming days. Can
-you figure out what this little web-application does even
-though you haven't learned about FastAPI yet?
+| Method | Action             | URL                                |
+|  ----- | ------------------ | ---------------------------------- |
+| POST |  Create an Account  | http://localhost:8000/accounts |
+| PUT | Update Account | http://localhost:8000/accounts/{user_id} |
+| GET | Get Account Detail | http://localhost:8000/accounts/{user_id} |
+| DEL | Delete Account | http://localhost:8000/accounts/{user_id} |
 
-Also in `sample_service` is a directory for your migrations.
-If you choose to use PostgreSQL, then you'll want to use
-migrations to control your database. Unlike Django, where
-migrations were automatically created for you, you'll write
-yours by hand using DDL. Don't worry about not knowing what
-DDL means; we have you covered. There's a sample migration
-in there that creates two tables so you can see what they
-look like.
+ <details>
+<summary><strong>Create Account</strong></summary>
+<br>
 
-The sample Dockerfile and Dockerfile.dev run your migrations
-for you automatically.
+#### Input:
+```
+{
+    "username": "string",
+    "password": "string",
+    "email": "string",
+    "user_pic_url": "string",
+    "bio": "string",
+    "zipcode": 0
+}
+```
+#### Ouput:
+```
+{
+    "access_token": "string",
+    "token_type": "Bearer",
+    "account": {
+      "id": 0,
+      "username": "string",
+      "email": "string",
+      "user_pic_url": "string",
+      "bio": "string",
+      "zipcode": 0
+  }
+}
+```
 
-### Other files
+</details>
 
-The following project files have been created as a minimal
-starting point. Please follow the guidance for each one for
-a most successful project.
+ <details>
+<summary><strong>Update Account</strong></summary>
+<br>
 
-* `docker-compose.yaml`: there isn't much in here, just a
-  **really** simple UI and FastAPI service. Add services
-  (like a database) to this file as you did with previous
-  projects in module #2.
-* `.gitlab-ci.yml`: This is your "ci/cd" file where you will
-  configure automated unit tests, code quality checks, and
-  the building and deployment of your production system.
-  Currently, all it does is deploy an "under construction"
-  page to your production UI on GitLab and a sample backend
-  to Render.com. We will learn much more about this file.
-* `.gitignore`: This is a file that prevents unwanted files
-  from getting added to your repository, files like
-  `pyc` files, `__pycache__`, etc. We've set it up so that
-  it has a good default configuration for Python projects.
+#### Input:
+```
+{
+    "username": "string",
+    "email": "string",
+    "user_pic_url": "string",
+    "bio": "string",
+    "zipcode": "string"
+}
+```
+#### Ouput:
+```
+{
+    "id": 0,
+    "username": "string",
+    "email": "string",
+    "user_pic_url": "string",
+    "bio": "string",
+    "zipcode": 0
+}
+```
 
-## How to complete the initial deploy
+</details>
 
-There will be further guidance on completing the initial
-deployment, but it just consists of these steps:
+</details>
 
-### Setup GitLab repo/project
+<details>
+<summary><strong>Account Detail</strong></summary>
+<br>
 
-* make sure this project is in a group. If it isn't, stop
-  now and move it to a GitLab group
-* remove the fork relationship: In GitLab go to:
+```
+{
+	"id": 0,
+  "username": "string",
+  "email": "string",
+  "user_pic_url": "string",
+  "bio": "string",
+  "zipcode": 0
+}
+```
 
-  Settings -> General -> Advanced -> Remove fork relationship
+</details>
 
-* add these GitLab CI/CD variables:
-  * PUBLIC_URL : this is your gitlab pages URL
-  * SAMPLE_SERVICE_API_HOST: enter "blank" for now
+<details>
+<summary><strong>Delete Account</strong></summary>
+<br>
 
-#### Your GitLab pages URL
+```
+{
+	true
+}
+```
 
-You can't find this in GitLab until after you've done a deploy
-but you can figure it out yourself from your GitLab project URL.
+</details>
 
-If this is your project URL
+#### Art
 
-https://gitlab.com/GROUP_NAME/PROJECT_NAME
+| Method | Action             | URL                                |
+|  ----- | ------------------ | ---------------------------------- |
+| POST | Create an Art | http://localhost:8000/arts |
+| PUT | Update Art | http://localhost:8000/arts/{art_id}/update |
+| GET | List of Arts | http://localhost:8000/arts |
+| GET | Art Detail | http://localhost:8000/arts/{art_id} |
+| DEL | Delete Art | http://localhost:8000/arts/{art_id} |
 
-then your GitLab pages URL will be
+ <details>
+<summary><strong>Create Art</strong></summary>
+<br>
 
-https://GROUP_NAME.gitlab.io/PROJECT_NAME
+#### Input:
+```
+{
+    "title": "string",
+    "category": "string",
+    "art_pic_url": "string",
+    "description": "string",
+    "price": 0
+}
+```
+#### Ouput:
+```
+{
+    "id": 0,
+    "user_id": 0,
+    "title": "string",
+    "category": "string",
+    "art_pic_url": "string",
+    "description": "string",
+    "price": 0
+}
+```
 
-### Create render.com account and application
+</details>
 
-* create account on render.com
-* one person create a group and invite all other members
-* create a new "Web Service"
-  * authenticate with GitLab and choose your project
-  * Enter fields:
-    * Name: name of your service
-    * Root Directory: the directory of your service in your git repo.
-      For this example use "sample_service".
-    * Environment: Docker
-    * Plan Type: Free
-  * click the "Create Web Service" button to create it
-  * the build will succeed and it will look like the server is running,
-    most likely, in 6-10 minutes, it will fail.
-  * click "Manual Deploy" -> "Deploy latest commit" and the service
-    should deploy successfully.
+ <details>
+<summary><strong>Update Art</strong></summary>
+<br>
 
-### Update GitLab CI/CD variables
+#### Input:
+```
+{
+    "title": "string",
+    "category": "string",
+    "art_pic_url": "string",
+    "description": "string",
+    "price": 0
 
-Copy the service URL for your new render.com service and then paste
-that into the value for the SAMPLE_SERVICE_API_HOST CI/CD variable
-in GitLab.
+}
+```
+#### Ouput:
+```
+{
+    "id": 0,
+    "user_id": 0,
+    "title": "string",
+    "category": "string",
+    "art_pic_url": "string",
+    "description": "string",
+    "price": 0
+}
+```
 
-### Deploy it
+</details>
 
-Merge a change into main to kick off the initial deploy. Once the build pipeline
-finishes you should be able to see an "under construction" page on your GitLab
-pages site.
+<details>
+<summary><strong>List of Arts</strong></summary>
+<br>
+
+```
+[
+  {
+      "id": 0,
+      "user_id": 0,
+      "title": "string",
+      "category": "string",
+      "art_pic_url": "string",
+      "description": "string",
+      "price": 0,
+      "username": "string"
+  }
+]
+```
+
+</details>
+
+<details>
+<summary><strong>Art Detail</strong></summary>
+<br>
+
+```
+{
+    "id": 0,
+    "user_id": 0,
+    "title": "string",
+    "category": "string",
+    "art_pic_url": "string",
+    "description": "string",
+    "price": 0,
+    "username": "string"
+}
+```
+
+</details>
+
+<details>
+<summary><strong>Delete Art</strong></summary>
+<br>
+
+```
+{
+	true
+}
+```
+
+</details>
+
+#### Likes
+| Method | Action             | URL                                |
+|  ----- | ------------------ | ---------------------------------- |
+| POST | Create a Like | http://localhost:8000/likes |
+
+<details>
+<summary><strong>Create Like</strong></summary>
+<br>
+
+```
+{
+    "user_id": 0,
+    "art_id": 0,
+    "liked_by": 0,
+    "created_at": "2023-04-26T22:25:18.105Z"
+}
+```
+
+</details>
