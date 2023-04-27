@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
-import { useParams } from "react-router-dom";
 
-function UpdateArtForm() {
-  const { art_id } = useParams();
+function CreateArtForm() {
   const { token } = useAuthContext();
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [artPicture, setArtPicture] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
+  const [userId, setUserId] = useState("");
 
   const handleTitleChange = (event) => {
     const value = event.target.value;
@@ -45,10 +44,11 @@ function UpdateArtForm() {
     data.art_pic_url = artPicture;
     data.description = description;
     data.price = price;
+    data.user_id = userId;
 
-    const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/arts/${art_id}`;
+    const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/arts`;
     const fetchConfig = {
-      method: "put",
+      method: "post",
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
@@ -62,30 +62,15 @@ function UpdateArtForm() {
       setArtPicture("");
       setDescription("");
       setPrice("");
+      setUserId("");
     }
   };
-
-  useEffect(() => {
-    const fetchArtData = async () => {
-      const URL = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/arts`;
-
-      const response = await fetch(URL, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      if (response.ok) {
-        const data = await response.json();
-        console.log(data);
-      }
-    };
-    fetchArtData();
-  }, [token]);
-
   return (
     <div className="min-h-screen flex items-center justify-center bg-cream-50  py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-lg shadow-lg">
         <div>
           <h1 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Update Art
+            Create Art
           </h1>
         </div>
         <form
@@ -175,7 +160,7 @@ function UpdateArtForm() {
               type="submit"
               className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-orange-500 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
             >
-              Update
+              Create
             </button>
           </div>
         </form>
@@ -183,4 +168,4 @@ function UpdateArtForm() {
     </div>
   );
 }
-export default UpdateArtForm;
+export default CreateArtForm;

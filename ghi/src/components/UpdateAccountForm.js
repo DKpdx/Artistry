@@ -38,7 +38,6 @@ function UpdateAccountForm() {
     }
   };
 
-  //------  Logout on click------
   const handleLogout = async () => {
     try {
       await fetch(`${process.env.REACT_APP_USER_SERVICE_API_HOST}/token`, {
@@ -48,7 +47,6 @@ function UpdateAccountForm() {
       setToken(null);
       document.cookie =
         "fastapi_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      navigate("/Login");
     } catch (error) {
       console.error(error);
     }
@@ -159,7 +157,7 @@ function UpdateAccountForm() {
                   id="user_pic_url"
                   value={user_pic_url}
                   onChange={(event) => setUser_Pic_Url(event.target.value)}
-                  placeholder="optional"
+                  placeholder="Picture URL"
                 />
               </div>
               <div className="form-floating mb-3">
@@ -169,13 +167,13 @@ function UpdateAccountForm() {
                   id="bio"
                   value={bio}
                   onChange={(event) => setBio(event.target.value)}
-                  placeholder="optional"
+                  placeholder="Bio"
                 />
               </div>
               <div className="form-floating mb-3">
                 <input
                   type="text"
-                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border rounded-b-md border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                   id="zipcode"
                   value={zipcode}
                   onChange={(event) => setZipcode(event.target.value)}
