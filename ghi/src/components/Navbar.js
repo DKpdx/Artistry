@@ -94,6 +94,9 @@ const Navbar = () => {
                     <NavLink className="dropdown-item" to="/likes">
                       Create A Like!
                     </NavLink>
+                    <NavLink className="dropdown-item" to="/likes/list">
+                      My Likes
+                    </NavLink>
                     <NavLink className="dropdown-item" to="/accounts/me">
                       My Account
                     </NavLink>
