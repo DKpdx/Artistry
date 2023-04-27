@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
 
 function CreateArtForm() {
@@ -9,6 +10,7 @@ function CreateArtForm() {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [userId, setUserId] = useState("");
+  const navigate = useNavigate();
 
   const handleTitleChange = (event) => {
     const value = event.target.value;
@@ -63,6 +65,7 @@ function CreateArtForm() {
       setDescription("");
       setPrice("");
       setUserId("");
+      navigate("/");
     }
   };
   return (

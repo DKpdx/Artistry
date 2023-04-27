@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function CreateAccountForm() {
   const [username, setUsername] = useState("");
@@ -7,6 +8,7 @@ function CreateAccountForm() {
   const [user_pic_url, setUser_Pic_Url] = useState("");
   const [bio, setBio] = useState("");
   const [zipcode, setZipcode] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -34,6 +36,7 @@ function CreateAccountForm() {
       setUser_Pic_Url("");
       setBio("");
       setZipcode("");
+      navigate("/login");
     } else {
       console.error("Error creating Client; Please try again");
     }
