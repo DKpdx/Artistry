@@ -1,30 +1,30 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuthContext } from '@galvanize-inc/jwtdown-for-react';
 
 function LikesList() {
   const [likes, setLikes] = useState([]);
   const { token } = useAuthContext();
 
-  const fetchLikes = useCallback(async () => {
-    const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/likes`;
+useEffect(() => {
+      const fetchLikes = async () => {
+        const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/likes`;
 
-    const response = await fetch(url, {
-      headers: {
-        'Authorization': `Bearer ${token}`,
-      },
-    });
+        const response = await fetch(url, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
-    if (response.ok) {
-      const data = await response.json();
-      setLikes(data);
-    }
-  }, [token]);
+        if (response.ok) {
+          const data = await response.json();
+          setLikes(data);
+        }
+      };
 
-  useEffect(() => {
-    if (token) {
+      if (token) {
       fetchLikes();
     }
-  }, [fetchLikes, token]);
+  }, [token]);
 
 
 return (
