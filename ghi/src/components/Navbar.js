@@ -52,7 +52,7 @@ const Navbar = () => {
             placeholder=""
             className="py-2.5 w-[20rem] rounded-full outline-0"
           />
-          <div className="bg-[#ff5a60] p-2 rounded-full mr-2">
+          <div className="bg-orange-500 hover:bg-orange-600 p-2 rounded-full mr-2">
             <FiSearch className="text-white w-full" />
           </div>
         </div>
@@ -100,20 +100,9 @@ const Navbar = () => {
                     <NavLink className="dropdown-item" to="/accounts/me">
                       My Account
                     </NavLink>
-                    {!token && (
-                      <NavLink className="dropdown-item" to="/accounts">
-                        Create Account
-                      </NavLink>
-                    )}
-                    {!token ? (
-                      <NavLink className="dropdown-item" to="/login">
-                        Sign In
-                      </NavLink>
-                    ) : (
-                      <button className="dropdown-item" onClick={handleLogout}>
-                        Logout
-                      </button>
-                    )}
+                    <button className="dropdown-item" onClick={handleLogout}>
+                      Logout
+                    </button>
                   </div>
                 </div>
               )}
