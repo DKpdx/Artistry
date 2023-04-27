@@ -1,4 +1,7 @@
 ## Journals
+## 4/26/23
+Today we worked as a team to fix the css to be coherent, debug, and test deployment. We also started working on stretch goals while finishing up the readme.
+
 ## 4/25/23
 Today we finished deployment in the morning then spent the rest of the day working on Heathers component as a team, we also worked on her unit test with her. 
 I also cleaned up the our component organization a little bit.
