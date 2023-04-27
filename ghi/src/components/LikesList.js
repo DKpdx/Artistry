@@ -24,7 +24,7 @@ function LikesList() {
     if (token) {
     fetchLikes();
   }
-  }, []);
+  }, [fetchLikes, token]);
 
 return (
   <div className="min-h-screen w-full flex items-center justify-center bg-cream-50 py-12 px-4 sm:px-6 lg:px-8">
