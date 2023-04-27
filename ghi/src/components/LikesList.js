@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useAuthContext } from '@galvanize-inc/jwtdown-for-react';
 
 function LikesList() {
   const [likes, setLikes] = useState([]);
   const { token } = useAuthContext();
 
-  const fetchLikes = async () => {
+  const fetchLikes = useCallback(async () => {
     const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/likes`;
 
     const response = await fetch(url, {
@@ -18,13 +18,14 @@ function LikesList() {
       const data = await response.json();
       setLikes(data);
     }
-  };
+  }, [token]);
 
   useEffect(() => {
     if (token) {
-    fetchLikes();
-  }
+      fetchLikes();
+    }
   }, [fetchLikes, token]);
+
 
 return (
   <div className="min-h-screen w-full flex items-center justify-center bg-cream-50 py-12 px-4 sm:px-6 lg:px-8">
