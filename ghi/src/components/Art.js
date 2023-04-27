@@ -1,7 +1,7 @@
 import React from "react";
 import { AiOutlineHeart } from "react-icons/ai";
 
-const Art = ({ title, image, description, artist, price }) => {
+const Art = ({ title, image, description, artist, artistId, price }) => {
   return (
     <div className="">
       <div className="relative">
@@ -23,7 +23,7 @@ const Art = ({ title, image, description, artist, price }) => {
             {description}
           </p>
           <p className="max-w-[18rem] text-[16px] -mt-1 text-gray-500">
-            {artist}
+            {artist}, {artistId}
           </p>
           <p className="max-w-[18rem] text-[16px]">${price}</p>
         </div>
