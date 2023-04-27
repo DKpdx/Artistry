@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
-import { FiSearch } from "react-icons/fi";
+// import { FiSearch } from "react-icons/fi";
 import { useContext } from "react";
 import { AuthContext } from "@galvanize-inc/jwtdown-for-react";
 import "./styles.css";
@@ -46,7 +46,7 @@ const Navbar = () => {
           </NavLink>
         </div>
         {/* Middle */}
-        <div className="hidden lg:flex justify-center items-center relative shadow-sm shadow-gray-300 border rounded-full">
+        {/* <div className="hidden lg:flex justify-center items-center relative shadow-sm shadow-gray-300 border rounded-full">
           <input
             type="search"
             placeholder=""
@@ -55,7 +55,7 @@ const Navbar = () => {
           <div className="bg-orange-500 hover:bg-orange-600 p-2 rounded-full mr-2">
             <FiSearch className="text-white w-full" />
           </div>
-        </div>
+        </div> */}
         {/* Right */}
         <div className="flex items-center pr-3 font-semibold text-gray-500">
           <div className="flex">
