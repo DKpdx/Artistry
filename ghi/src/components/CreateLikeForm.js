@@ -79,7 +79,7 @@ function CreateLikeForm() {
       setUserId("");
       setArtId("");
       setLikedBy("");
-      navigate("");
+      navigate("/likes/list");
     } else {
       console.log("Unable to Like Art");
     }
