@@ -106,6 +106,17 @@ def get_account_by_id(
     if account_data is None:
         raise HTTPException(status_code=401, detail="Unauthorized request.")
 
+@router.get("/accounts/{id}/info", response_model=AccountOut)
+def get_user_info(
+    id: int,
+    repo: AccountQueries = Depends(),
+    account_data: Optional[dict] = Depends(authenticator.try_get_current_account_data),
+) -> AccountOut:
+    user = repo.get_user_info_by_id(id)
+    if user is not None:
+        return user
+    else:
+        raise HTTPException(status_code=404, detail="User not found.")
 
 @router.put("/accounts/{id}", response_model=AccountOut)
 def update_account(

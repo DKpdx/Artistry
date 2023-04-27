@@ -40,4 +40,16 @@ Today we took a break from deployment and tried to get some frontend work done. 
 
 April 20, 2023
 
-We still have so much to do
+We still have so much to do.
+
+April 24, 2023
+
+Today we worked as a unit to finish some frontend components and general code cleanup. We also started revisiting deployment but we're unlucky when it came to getting the apps to build.
+
+April 25, 2023
+
+Today we were able to finish the deployment for our app. As far as I can tell, the app deploys at least our MVP so that was the goal. We also finished our unit tests and got all of them to pass as well for the deployment.
+
+April 26, 2023
+
+Today we mostly worked on the more cosmetic pages for the website. I re-stylized the Navbar and button placement for most components, while the others worked on a likes page and a profile page. We should be good as far as "bare minimum requirements" go for the project, however I still want to polish our app until presentations next week.

@@ -191,6 +191,25 @@ class AccountQueries:
         except Exception:
             return {"message": "Could not update account."}
 
+    def get_user_info_by_id(self, id: int) -> Union[AccountOut, Error]:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    result = db.execute(
+                        """
+                        SELECT id, username, email, user_pic_url, bio, zipcode
+                        FROM users
+                        WHERE id = %s
+                        """,
+                        [id],
+                    )
+                    record = result.fetchone()
+                    if record is None:
+                        return None
+                    return self.record_to_account_out_no_password(record)
+        except Exception:
+            return {"message": "Could not get user information by ID."}
+
     def delete(self, id: int) -> bool:
         try:
             with pool.connection() as conn:
