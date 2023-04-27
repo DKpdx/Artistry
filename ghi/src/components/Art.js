@@ -1,5 +1,5 @@
 import React from "react";
-import { AiOutlineHeart } from "react-icons/ai";
+// import { AiOutlineHeart } from "react-icons/ai";
 
 const Art = ({ title, image, description, artist, artistId, artId, price }) => {
   return (
@@ -28,7 +28,7 @@ const Art = ({ title, image, description, artist, artistId, artId, price }) => {
           <p className="max-w-[18rem] text-[16px]">${price}</p>
         </div>
         <div className="flex items-center space-x-1">
-          <AiOutlineHeart />
+          {/* <AiOutlineHeart /> */}
           <p className="text-[14px]"></p>
         </div>
       </div>
