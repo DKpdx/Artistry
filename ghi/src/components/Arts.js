@@ -41,6 +41,7 @@ const Arts = () => {
             <Art
               artist={art.username}
               artistId={art.user_id}
+              artId={art.id}
               title={art.title}
               image={art.art_pic_url}
               description={art.description}
