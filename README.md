@@ -2,11 +2,11 @@
 
 #### Team:
 
-* Chase Whitaker - Software Developer
-* John Jackson - Sofeware Developer
-* Daniel Mitchell - Software Developer
-* Heather DePesa - Software Developer
-* Peter Trinh - Software Developer
+* Chase Whitaker
+* John Jackson
+* Daniel Mitchell
+* Heather DePesa
+* Peter Trinh
 
 ## Intended Audience
 
@@ -44,15 +44,14 @@ If encounter a warning about missing environment variable named OS and macOS, it
   * The user can make changes to their art by either updating or deleteing the art
 * Other user is able to like that user's art
   * The other user that liked the art, will store their liked arts under their account
-  * The other user that liked the art, will store their liked arts under their account
 
-## FastAPI Overview
+## API Overview
 
 #### Account
 
 | Method | Action             | URL                                |
 |  ----- | ------------------ | ---------------------------------- |
-|  POST  |  Create an Account  | http://localhost:8000/accounts |
+| POST |  Create an Account  | http://localhost:8000/accounts |
 | PUT | Update Account | http://localhost:8000/accounts/{user_id} |
 | GET | Get Account Detail | http://localhost:8000/accounts/{user_id} |
 | DEL | Delete Account | http://localhost:8000/accounts/{user_id} |
