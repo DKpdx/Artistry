@@ -64,7 +64,6 @@ function UpdateAccountForm() {
     });
     if (response.ok) {
       const data = await response.json();
-      console.log(data);
       setAccount(data.account);
       setUsername(data.account.username);
       setEmail(data.account.email);

@@ -100,20 +100,9 @@ const Navbar = () => {
                     <NavLink className="dropdown-item" to="/accounts/me">
                       My Account
                     </NavLink>
-                    {!token && (
-                      <NavLink className="dropdown-item" to="/accounts">
-                        Create Account
-                      </NavLink>
-                    )}
-                    {!token ? (
-                      <NavLink className="dropdown-item" to="/login">
-                        Sign In
-                      </NavLink>
-                    ) : (
-                      <button className="dropdown-item" onClick={handleLogout}>
-                        Logout
-                      </button>
-                    )}
+                    <button className="dropdown-item" onClick={handleLogout}>
+                      Logout
+                    </button>
                   </div>
                 </div>
               )}
