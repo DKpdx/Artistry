@@ -43,3 +43,22 @@ I got the account details page to pull the account details from a signed in user
 
 4/20/23
 We all worked on helping get more of the FE working so that all of the team has their basic rubric requirements covered. I then did the get all accounts unit test and set it all up for the rest of the team to implement their own in the tests folder.
+
+4/21/23
+I worked on having an art detail page that matched by ID and had a handle o’clock function from our landing page. This would allow an image to be clicked and then directed to the art details by the art id.
+
+4/22/23
+I got the handle on click and the art detail page working. So now when a visitor clicks on an image from the main landing page, it directs them to the details for that image.
+
+4/24/23
+We worked on deployment as a team. Got stuck In a spot and agreed to resume tomorrow.
+
+4/25/23
+We got deployment working without create likes. We then team worked on Heathers create like form. We got Heathers form working and then helped to make her Unit test.
+
+
+2/26/23
+We worked as a team to remove console.logs and comments so that our code was clean. Also, we made some changes to how our routing was handled and where our button for navigation were organized.
+
+2/27/23
+Created a likes page to render all of the likes posted to show that it was hitting the database and being saved. Also, updated my journal entries and set up the routing for the new page.
