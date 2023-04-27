@@ -36,5 +36,8 @@ We're working on our individual unit test and we're also trying to get deploymen
 Tuesday 4/25/2023:
 We're still working on trying to finish deployment and hopefully get it done by today. Some of us are still working on our unit test, including me, and I also want to work on our READme. We got deployment done last night which was a huge relieve for us. I also worked on the CSS for the update art form.
 
-Wednesday 4/26/2034:
+Wednesday 4/26/2023:
 The team is working on cleaning up the code of commented out code and console.logs. Some of us are working on styling of the webpage, while I'm working on our READme. We start working on stretch goals where we're working on to get a profile page for the user bio and arts and a like page for user likes.
+
+Thursday 4/27/2023:
+We are finished with our project and trying to work on stretch goals right now. We put our stretch goals on pause so we can do our demo. We're just cleaning up our code and making changes to improve the user experience.
