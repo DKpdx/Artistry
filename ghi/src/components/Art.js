@@ -1,5 +1,5 @@
 import React from "react";
-import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import { AiOutlineHeart } from "react-icons/ai";
 
 const Art = ({ title, image, description, artist, price }) => {
   return (

@@ -123,7 +123,13 @@ class AccountQueries:
                 with conn.cursor() as db:
                     result = db.execute(
                         """
-                        SELECT id, username, email, hashed_password, user_pic_url, bio, zipcode
+                        SELECT id,
+                            username,
+                            email,
+                            hashed_password,
+                            user_pic_url,
+                            bio,
+                            zipcode
                         FROM users
                         WHERE username = %s;
                         """,
@@ -189,6 +195,20 @@ class AccountQueries:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
+                    db.execute(
+                        """
+                        DELETE FROM likes
+                        WHERE liked_by = %s
+                        """,
+                        [id],
+                    )
+                    db.execute(
+                        """
+                        DELETE FROM arts
+                        WHERE user_id = %s
+                        """,
+                        [id],
+                    )
                     db.execute(
                         """
                         DELETE FROM users

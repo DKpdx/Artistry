@@ -1,11 +1,10 @@
 from fastapi import APIRouter, Depends, Response, HTTPException
-from typing import List, Union, Optional
+from typing import List, Union
 from queries.likes import (
     LikesIn,
     LikesOut,
     Error,
     LikesQueries,
-    LikesOutWithAccount,
 )
 from authenticator import authenticator
 
@@ -32,12 +31,17 @@ def get_all(
     return repo.get_all()
 
 
+<<<<<<< HEAD
 @router.get("/likes/{liked_by}", response_model=Union[List[LikesOutWithAccount], Error])
 def get_all_likes_by_user(
+=======
+@router.get("/likes/{liked_by}", response_model=Union[List[LikesOut], Error])
+def get_likes_by_user(
+>>>>>>> main
     liked_by: int,
-    response: Response,
     repo: LikesQueries = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
+<<<<<<< HEAD
 ) -> LikesOutWithAccount:
     likes = repo.get_all_likes_by_user(liked_by)
     if account_data["id"] != likes.liked_by:
@@ -46,6 +50,19 @@ def get_all_likes_by_user(
         )
     if likes is None:
         response.status_code = 404
+=======
+) -> LikesOut:
+    likes = repo.get_likes_by_user(liked_by)
+    for like in likes:
+        if account_data["id"] != like.liked_by:
+            raise HTTPException(
+                status_code=403, detail="You can't see other people's likes."
+                )
+        if likes is None:
+            raise HTTPException(
+                status_code=404, detail="You haven't liked anything yet."
+                )
+>>>>>>> main
     return likes
 
 
