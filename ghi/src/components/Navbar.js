@@ -4,11 +4,7 @@ import logo from "../assets/logo.png";
 import { FiSearch } from "react-icons/fi";
 import { useContext } from "react";
 import { AuthContext } from "@galvanize-inc/jwtdown-for-react";
-<<<<<<< HEAD
-import AllMyLikes from './AllMyLikes';
-=======
 import "./styles.css";
->>>>>>> main
 
 const Navbar = () => {
   const { token, setToken } = useContext(AuthContext);
@@ -38,10 +34,6 @@ const Navbar = () => {
     <div className="border-b sticky top-0 z-50 bg-white/[95%] ">
       <div className="flex justify-between items-center sm:px-6 md:px-10 lg:px-12">
         {/* Left */}
-<<<<<<< HEAD
-        <div className="h-20 flex">
-          <img src={logo} alt="" className="object-cover" />
-=======
         <div className="h-24 w-24 flex items-center">
           <NavLink to="/">
             <div className="">
@@ -52,7 +44,6 @@ const Navbar = () => {
               />
             </div>
           </NavLink>
->>>>>>> main
         </div>
         {/* Middle */}
         <div className="hidden lg:flex justify-center items-center relative shadow-sm shadow-gray-300 border rounded-full">
@@ -83,13 +74,6 @@ const Navbar = () => {
               </NavLink>
             )}
           </div>
-<<<<<<< HEAD
-          <div className="flex items-center border px-4 py-2 rounded-full gap-3 bg-[#ff5a60] text-white font-bold shadow-sm shadow-gray-300 hover:bg-[#f9787c] duration-100 ease-out">
-            <NavLink className="nav-link" to="/likes">
-              <button>My Likes</button>
-            </NavLink>
-          </div>
-=======
           {token && (
             <div className="relative">
               <button
@@ -135,7 +119,6 @@ const Navbar = () => {
               )}
             </div>
           )}
->>>>>>> main
         </div>
       </div>
     </div>
