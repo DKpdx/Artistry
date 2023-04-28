@@ -14,7 +14,7 @@ Fine Whatever is a web application that allows user to appreciate other user's a
 
 ## Project Diagram
 
-![image](/uploads/57edde9c9d2ced6a26ea048ee367be3e/image.png)
+![image](/uploads/1524cfefa08127b86f4ea17918520908/image.png)
 
 ## Getting Started
 
