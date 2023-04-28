@@ -79,7 +79,7 @@ function CreateLikeForm() {
       setUserId("");
       setArtId("");
       setLikedBy("");
-      navigate("");
+      navigate("/likes/list");
     } else {
       console.log("Unable to Like Art");
     }
@@ -90,7 +90,7 @@ function CreateLikeForm() {
       <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-lg shadow-lg">
         <div>
           <h1 className="mt-6 text-center text-2xl font-extrabold text-gray-900">
-            LIKE ART
+            Like Some Art, or whatever...
           </h1>
         </div>
         <form
@@ -125,7 +125,7 @@ function CreateLikeForm() {
                 type="text"
                 name="art_id"
                 id="art_id"
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 onChange={handleArtIdChange}
                 value={artId}
               />
@@ -133,7 +133,7 @@ function CreateLikeForm() {
 
             <div>
               <label htmlFor="liked_by" className="sr-only">
-                Liked By
+                Liked By (your id)
               </label>
               <input
                 placeholder="Liked by"
@@ -141,7 +141,7 @@ function CreateLikeForm() {
                 type="text"
                 name="liked_by"
                 id="liked_by"
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 onChange={handleLikedByChange}
                 value={likedBy}
               />
@@ -150,7 +150,7 @@ function CreateLikeForm() {
             <div>
               <button
                 type="submit"
-                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-orange-500 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
+                className="group mt-4 relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-orange-500 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
               >
                 Save this like, or whatevers
               </button>

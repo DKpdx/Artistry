@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 import Art from "./Art";
 import ArtsContext from "./ArtsContext";
 
@@ -47,10 +47,15 @@ const Arts = () => {
     <div className="py-3 sm:py-5 ">
       <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
         {arts.map((art) => (
-          <div key={art.id} onClick={() => handleClick(art.id)} style={{cursor: 'pointer'}}>
+          <div
+            key={art.id}
+            onClick={() => handleClick(art.id)}
+            style={{ cursor: "pointer" }}
+          >
             <Art
               artist={art.username}
->>>>>>> main
+              artistId={art.user_id}
+              artId={art.id}
               title={art.title}
               image={art.art_pic_url}
               description={art.description}
