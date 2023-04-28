@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 function ArtDetail() {
   const [art, setArt] = useState([]);
   const { art_id } = useParams();
+  const navigate = useNavigate();
 
   const fetchArt = useCallback(async () => {
     const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/arts/${art_id}`;
@@ -17,6 +18,10 @@ function ArtDetail() {
   useEffect(() => {
     fetchArt();
   }, [fetchArt]);
+
+  const goToUpdateArtForm = () => {
+    navigate(`/arts/${art_id}/update`);
+  };
 
   return art ? (
     <div className="min-h-screen w-full flex items-center justify-center bg-cream-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -64,6 +69,14 @@ function ArtDetail() {
             </tbody>
           </table>
         </div>
+        <div className="text-center mt-4">
+          <button
+            onClick={goToUpdateArtForm}
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Update Art
+          </button>
+        </div>
       </div>
     </div>
   ) : (
@@ -72,39 +85,3 @@ function ArtDetail() {
 }
 
 export default ArtDetail;
-
-// return art ? (
-//   <div className="py-3 sm:py-5">
-//     <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-//       <table className="table table-striped">
-//         <thead>
-//           <tr>
-//             <th>Artist</th>
-//             <th>Title</th>
-//             <th>Picture</th>
-//             <th>Description</th>
-//             <th>Price</th>
-//           </tr>
-//         </thead>
-//         <tbody>
-//           <tr key={art.id} value={art.id}>
-//             <td>{art.username}</td>
-//             <td>{art.title}</td>
-//             <td>
-//               <img
-//                 alt="picture_here"
-//                 src={art.art_pic_url}
-//                 width="200"
-//                 height="150"
-//               ></img>
-//             </td>
-//             <td>{art.description}</td>
-//             <td>{art.price}</td>
-//           </tr>
-//         </tbody>
-//       </table>
-//     </div>
-//   </div>
-// ) : (
-//   <div>Loading...</div>
-// );
