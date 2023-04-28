@@ -81,7 +81,7 @@ class LikesQueries:
                     ]
         except Exception:
             return {"message": "Can't find any liked images"}
-    
+
     def get_like_by_id(self, likes_id: int) -> Optional[LikesOut]:
         try:
             with pool.connection() as conn:
@@ -151,5 +151,5 @@ class LikesQueries:
                         [likes_id],
                     )
                     return True
-        except Exception as e:
+        except Exception:
             return False

@@ -1,19 +1,18 @@
-import { useEffect, useState, useContext } from "react";
+import { useContext } from "react";
 import { Routes, Route } from "react-router-dom";
-import Nav from "./Nav.js";
-import Construct from "./Construct.js";
 import { AuthContext } from "@galvanize-inc/jwtdown-for-react";
-import LoginForm from "./LoginForm.js";
-import CreateAccountForm from "./CreateAccountForm.js";
-import ErrorNotification from "./ErrorNotification";
-import AccountDetails from "./AccountDetails.js";
-import UpdateAccountForm from "./Accounts/UpdateAccountForm.js";
+import LoginForm from "./components/LoginForm.js";
+import CreateAccountForm from "./components/CreateAccountForm.js";
+import AccountDetails from "./components/AccountDetails.js";
+import UpdateAccountForm from "./components/UpdateAccountForm.js";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Arts from "./components/Arts";
-import CreateArtForm from "./CreateArtForm.js";
-import UpdateArtForm from "./UpdateArtForm.js";
-import ArtDetail from "./ArtDetail.js";
+import CreateArtForm from "./components/CreateArtForm.js";
+import UpdateArtForm from "./components/UpdateArtForm.js";
+import ArtDetail from "./components/ArtDetail.js";
+import CreateLikeForm from "./components/CreateLikeForm.js";
+import LikesList from "./components/LikesList.js";
 
 function App() {
   const { token } = useContext(AuthContext);
@@ -31,6 +30,8 @@ function App() {
           <Route path="" element={<Arts />} />
           <Route path="/arts/new" element={<CreateArtForm />} />
           <Route path="/arts/:art_id/update" element={<UpdateArtForm />} />
+          <Route path="/likes" element={<CreateLikeForm />} />
+          <Route path="/likes/list" element={<LikesList />} />
         </Routes>
       </div>
     </>

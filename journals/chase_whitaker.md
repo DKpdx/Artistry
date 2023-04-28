@@ -40,4 +40,20 @@ Today we took a break from deployment and tried to get some frontend work done. 
 
 April 20, 2023
 
-We still have so much to do
+We still have so much to do. We worked on the deployment some more but were unsuccessful. Other members were working on the frontend components. Update art works now!
+
+April 24, 2023
+
+Today, we were able top deploy the application, and then we worked on individual unit tests for the group. I finished my get_all_arts unit test, and helped debug some more frontend component problems with the group.
+
+April 25, 2023
+
+Today we did some pair programming, we mostly focused on getting Heather's components all caught up to ours. Then I did some more styling changes on the front end so our Jobs pass in gitlab (mostly lint errors).
+
+April 26, 2023
+
+Today we continued to debug and polish up our frontend components. We got all of our individual requirements for MVP complete and working on the deployed version of the app.
+
+April 27, 2023
+
+We had Jon the SEIR come in and check out our deployed app, its nothing crazy but it meets the requirements. We plan to demo today as well, but we haven't heard back form instructors on that.
