@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 // import { FiSearch } from "react-icons/fi";
-import { useContext } from "react";
-import { AuthContext } from "@galvanize-inc/jwtdown-for-react";
+// import { useContext } from "react";
+import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
 import "./styles.css";
 
 const Navbar = () => {
-  const { token, setToken } = useContext(AuthContext);
+  const { token, setToken, userId } = useAuthContext();
   const navigate = useNavigate();
   const handleLogout = async () => {
     try {
@@ -59,7 +59,7 @@ const Navbar = () => {
         {/* Right */}
         <div className="flex items-center pr-3 font-semibold text-gray-500">
           <div className="flex">
-            {!token ? (
+            {/* {!token ? (
               <NavLink className="nav-link mr-4" to="/login">
                 Sign In
               </NavLink>
@@ -73,41 +73,48 @@ const Navbar = () => {
                 Create Account
               </NavLink>
             )}
-          </div>
-          {token && (
-            <div className="relative">
-              <button
-                className="flex items-center border px-4 py-2 rounded-full gap-3 bg-orange-500 hover:bg-orange-600 text-white font-bold focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-400"
-                onClick={toggleDropdown}
-              >
-                Menu
-              </button>
-              {dropdownOpen && (
-                <div className="dropdown absolute right-0 mt-2">
-                  <div className="dropdown-content">
-                    <NavLink className="dropdown-item" to="/">
-                      Home
-                    </NavLink>
-                    <NavLink className="dropdown-item" to="/arts/new">
-                      Post Your Art!
-                    </NavLink>
-                    <NavLink className="dropdown-item" to="/likes">
-                      Create A Like!
-                    </NavLink>
-                    <NavLink className="dropdown-item" to="/likes/list">
-                      My Likes
-                    </NavLink>
-                    <NavLink className="dropdown-item" to="/accounts/me">
-                      My Account
-                    </NavLink>
-                    <button className="dropdown-item" onClick={handleLogout}>
-                      Logout
-                    </button>
+          </div> */}
+            {token && (
+              <div className="relative">
+                <button
+                  className="flex items-center border px-4 py-2 rounded-full gap-3 bg-orange-500 hover:bg-orange-600 text-white font-bold focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-400"
+                  onClick={toggleDropdown}
+                >
+                  Menu
+                </button>
+                {dropdownOpen && (
+                  <div className="dropdown absolute right-0 mt-2">
+                    <div className="dropdown-content">
+                      <NavLink className="dropdown-item" to="/">
+                        Home
+                      </NavLink>
+                      <NavLink className="dropdown-item" to="/arts/new">
+                        Post Your Art!
+                      </NavLink>
+                      <NavLink className="dropdown-item" to="/likes">
+                        Create A Like!
+                      </NavLink>
+                      <NavLink className="dropdown-item" to="/likes/list">
+                        My Likes
+                      </NavLink>
+                      <NavLink
+                        className="dropdown-item"
+                        to={`/profile/${userId}`}
+                      >
+                        My Profile
+                      </NavLink>
+                      <NavLink className="dropdown-item" to="/accounts/me">
+                        My Account
+                      </NavLink>
+                      <button className="dropdown-item" onClick={handleLogout}>
+                        Logout
+                      </button>
+                    </div>
                   </div>
-                </div>
-              )}
-            </div>
-          )}
+                )}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
