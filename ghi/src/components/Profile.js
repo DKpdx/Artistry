@@ -6,17 +6,38 @@ import Art from "./Art";
 const Profile = ({ match }) => {
   const [userData, setUserData] = useState(null);
   const [artData, setArtData] = useState(null);
-  const { userId } = useParams();
+  const [userId, setUserId] = useState("");
   const { token } = useAuthContext();
+  console.log(userId);
 
   useEffect(() => {
-    if (token) {
+    fetchId();
+  }, []);
+
+  useEffect(() => {
+    if (userId) {
       fetchUserData();
       fetchArtData();
     }
-  }, [token]);
+  }, [userId]);
 
-  async function fetchUserData() {
+  const fetchId = async () => {
+    try {
+      const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/token`;
+      const fetchConfig = {
+        credentials: "include",
+      };
+      const response = await fetch(url, fetchConfig);
+      if (response.ok) {
+        const data = await response.json();
+        setUserId(data.account.id);
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const fetchUserData = async () => {
     const response = await fetch(
       `${process.env.REACT_APP_USER_SERVICE_API_HOST}/accounts/${userId}`,
       {
@@ -27,9 +48,9 @@ const Profile = ({ match }) => {
     );
     const data = await response.json();
     setUserData(data);
-  }
+  };
 
-  async function fetchArtData() {
+  const fetchArtData = async () => {
     const response = await fetch(
       `${process.env.REACT_APP_USER_SERVICE_API_HOST}/accounts/${userId}/arts`,
       {
@@ -40,7 +61,7 @@ const Profile = ({ match }) => {
     );
     const data = await response.json();
     setArtData(data);
-  }
+  };
 
   return (
     <div className="profile-container">
