@@ -57,8 +57,11 @@ We worked on deployment as a team. Got stuck In a spot and agreed to resume tomo
 We got deployment working without create likes. We then team worked on Heathers create like form. We got Heathers form working and then helped to make her Unit test.
 
 
-2/26/23
+4/26/23
 We worked as a team to remove console.logs and comments so that our code was clean. Also, we made some changes to how our routing was handled and where our button for navigation were organized.
 
-2/27/23
+4/27/23
 Created a likes page to render all of the likes posted to show that it was hitting the database and being saved. Also, updated my journal entries and set up the routing for the new page.
+
+4/28/23
+Added an update button to navigate to the update art form from the art detail page.
