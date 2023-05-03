@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect, useCallback } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
 
 function CreateLikeForm() {
   const { token } = useAuthContext();
+  const { art_id } = useParams();
   const [, setArts] = useState([]);
   const [userId, setUserId] = useState("");
   const [artId, setArtId] = useState("");
@@ -11,19 +12,14 @@ function CreateLikeForm() {
   const [, setAccount] = useState([]);
   const navigate = useNavigate();
 
-  const handleUserIdChange = (e) => {
+  const handleLikedByChange = (e) => {
     const value = e.target.value;
-    setUserId(value);
+    setLikedBy(value);
   };
 
   const handleArtIdChange = (e) => {
     const value = e.target.value;
     setArtId(value);
-  };
-
-  const handleLikedByChange = (e) => {
-    const value = e.target.value;
-    setLikedBy(value);
   };
 
   const fetchAccount = async () => {
@@ -36,6 +32,7 @@ function CreateLikeForm() {
       const data = await response.json();
       setAccount(data.account);
       setLikedBy(data.account.id);
+      setUserId(data.account.id);
     } else {
       console.log("Error fetching account:", response.status);
     }
@@ -43,6 +40,9 @@ function CreateLikeForm() {
 
   useEffect(() => {
     fetchAccount();
+    if (art_id) {
+      setArtId(art_id);
+    }
   }, []);
 
   const fetchArts = async () => {
@@ -110,7 +110,7 @@ function CreateLikeForm() {
                 name="user_id"
                 id="user_id"
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                onChange={handleUserIdChange}
+                // onChange={handleUserIdChange}
                 value={userId}
               />
             </div>

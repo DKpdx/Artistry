@@ -12,7 +12,7 @@ Today we worked as a group to implement the new feature for the backend endpoint
 
 April 7, 2023
 
-Today I Partner Programmed with the group while Danny, Heather, and John worked on the likes backend features. We got them working and protected on the FastAPI side.
+Today I Partner Programmed with Peter while the rest of the group Danny, Heather, and John worked on the likes backend features. We got them working and protected on the FastAPI side.
 
 April 10, 2023
 
@@ -57,3 +57,7 @@ Today we continued to debug and polish up our frontend components. We got all of
 April 27, 2023
 
 We had Jon the SEIR come in and check out our deployed app, its nothing crazy but it meets the requirements. We plan to demo today as well, but we haven't heard back form instructors on that.
+
+April 28, 2023
+
+Today is the due date, we ran a demo with Paul at 10. He said it looked good and we should be proud of making something from scratch. We have a lot of UI/UX updates to implement by the presentation next week. I worked on some changes for the Update art form, so the only the user who created an art piece can edit it (and soon delete it). The form auto populates, and redirects the user to the art detail page once done.
