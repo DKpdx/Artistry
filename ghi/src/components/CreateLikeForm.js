@@ -94,8 +94,12 @@ function CreateLikeForm() {
       <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-lg shadow-lg">
         <div>
           <h1 className="mt-6 text-center text-2xl font-extrabold text-gray-900">
-            Like Some Art, or whatever...
+            Like Some Art!
           </h1>
+          <p className=" text-center text text-gray-900">
+            (pssst just click the big orange button... I already filled out your
+            form)
+          </p>
         </div>
         <form
           id="create-like-form"
