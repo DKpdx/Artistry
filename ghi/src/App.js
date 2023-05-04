@@ -13,8 +13,6 @@ import UpdateArtForm from "./components/UpdateArtForm.js";
 import ArtDetail from "./components/ArtDetail.js";
 import CreateLikeForm from "./components/CreateLikeForm.js";
 import LikesList from "./components/LikesList.js";
-import Profile from "./components/Profile.js";
-import LandingPage from "./components/LandingPage.js";
 
 function App() {
   const { token } = useContext(AuthContext);
@@ -34,8 +32,6 @@ function App() {
           <Route path="/arts/:art_id/update" element={<UpdateArtForm />} />
           <Route path="/likes" element={<CreateLikeForm />} />
           <Route path="/likes/list" element={<LikesList />} />
-          <Route path="/profile/:userId" element={<Profile />} />
-          <Route path="Landing" element={<LandingPage />} />
         </Routes>
       </div>
     </>

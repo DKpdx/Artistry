@@ -1,19 +1,19 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { useNavigate, useParams, useLocation } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
 
 function CreateLikeForm() {
-  const location = useLocation();
-  const { art } = location.state || {};
-  const [userId, setUserId] = useState(art?.user_id || "");
-  const [artId, setArtId] = useState(art?.id || "");
-  const [likedBy, setLikedBy] = useState("");
-  const navigate = useNavigate();
   const { token } = useAuthContext();
+  const [, setArts] = useState([]);
+  const [userId, setUserId] = useState("");
+  const [artId, setArtId] = useState("");
+  const [likedBy, setLikedBy] = useState("");
+  const [, setAccount] = useState([]);
+  const navigate = useNavigate();
 
-  const handleLikedByChange = (e) => {
+  const handleUserIdChange = (e) => {
     const value = e.target.value;
-    setLikedBy(value);
+    setUserId(value);
   };
 
   const handleArtIdChange = (e) => {
@@ -21,9 +21,9 @@ function CreateLikeForm() {
     setArtId(value);
   };
 
-  const handleUserIdChange = (e) => {
+  const handleLikedByChange = (e) => {
     const value = e.target.value;
-    setUserId(value);
+    setLikedBy(value);
   };
 
   const fetchAccount = async () => {
@@ -34,6 +34,7 @@ function CreateLikeForm() {
     });
     if (response.ok) {
       const data = await response.json();
+      setAccount(data.account);
       setLikedBy(data.account.id);
     } else {
       console.log("Error fetching account:", response.status);
@@ -44,23 +45,18 @@ function CreateLikeForm() {
     fetchAccount();
   }, []);
 
-  const fetchArt = useCallback(async () => {
-    if (!artId) return;
-    const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/arts/${artId}`;
+  const fetchArts = async () => {
+    const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/arts`;
     const response = await fetch(url);
     if (response.ok) {
       const data = await response.json();
-      // setArt(data);
-      setArtId(data.id);
-      setUserId(data.user_id);
+      setArts(data.arts);
     }
-  }, [art]);
+  };
 
   useEffect(() => {
-    if (!art) return;
-    setArtId(art.id);
-    setUserId(art.user_id);
-  }, [art]);
+    fetchArts();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

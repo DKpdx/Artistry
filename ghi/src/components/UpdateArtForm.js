@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 function UpdateArtForm() {
-  const [art, setArt] = useState(null);
   const { art_id } = useParams();
   const { token } = useAuthContext();
   const [title, setTitle] = useState("");
@@ -11,7 +10,7 @@ function UpdateArtForm() {
   const [artPicture, setArtPicture] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  const navigate = useNavigate();
+  const [, setArtData] = useState([]);
 
   const handleTitleChange = (event) => {
     const value = event.target.value;
@@ -37,26 +36,6 @@ function UpdateArtForm() {
     const value = event.target.value;
     setPrice(value);
   };
-
-  const fetchArtData = useCallback(async () => {
-    const response = await fetch(
-      `${process.env.REACT_APP_USER_SERVICE_API_HOST}/arts/${art_id}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    if (response.ok) {
-      const data = await response.json();
-      setArt(data);
-      setTitle(data.title);
-      setCategory(data.category);
-      setArtPicture(data.art_pic_url);
-      setDescription(data.description);
-      setPrice(data.price);
-    }
-  }, [art_id]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -84,13 +63,23 @@ function UpdateArtForm() {
       setArtPicture("");
       setDescription("");
       setPrice("");
-      navigate(`/arts/${art_id}/detail`);
     }
   };
 
   useEffect(() => {
+    const fetchArtData = async () => {
+      const URL = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/arts`;
+
+      const response = await fetch(URL, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setArtData(data);
+      }
+    };
     fetchArtData();
-  }, [fetchArtData]);
+  }, [token]);
 
   return (
     <>
@@ -173,7 +162,7 @@ function UpdateArtForm() {
                     type="text"
                     name="price"
                     id="price"
-                    className="appearance-none rounded-b-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                     value={price}
                   />
                 </div>

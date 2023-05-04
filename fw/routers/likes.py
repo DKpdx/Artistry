@@ -65,12 +65,3 @@ def delete_like(
             status_code=403, detail="Cannot delete other people's likes."
         )
     return repo.delete(likes_id)
-
-@router.get("/likes/user/{user_id}/art/{art_id}", response_model=Union[LikesOut, Error])
-def get_like_by_user_and_art(
-    user_id: int,
-    art_id: int,
-    repo: LikesQueries = Depends(),
-    account_data: dict = Depends(authenticator.get_current_account_data),
-):
-    return repo.get_like_by_user_and_art(user_id, art_id)

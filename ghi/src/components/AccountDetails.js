@@ -1,59 +1,34 @@
-import React, { useEffect, useState, useContext } from "react";
-import { useToken, AuthContext } from "@galvanize-inc/jwtdown-for-react";
-import { useNavigate, useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import useToken from "@galvanize-inc/jwtdown-for-react";
+import { useNavigate } from "react-router-dom";
 
 function AccountDetails() {
   const [account, setAccount] = useState([]);
-  const { token } = useContext(AuthContext);
-  const [userId, setUserId] = useState("");
+  const { token } = useToken();
   const navigate = useNavigate();
-  const location = useLocation();
 
   const goToUpdateAccount = () => {
     navigate("/accounts/id");
   };
 
   const fetchAccount = async () => {
-    const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/accounts/${userId}`;
+    const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/token`;
     const response = await fetch(url, {
       method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      credentials: "include",
     });
     if (response.ok) {
       const data = await response.json();
-      setAccount(data);
+      setAccount(data.account);
     } else {
       console.log("Error fetching account:", response.status);
     }
   };
 
-  const fetchId = async () => {
-    try {
-      const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/token`;
-      const fetchConfig = {
-        credentials: "include",
-      };
-      const response = await fetch(url, fetchConfig);
-      if (response.ok) {
-        const data = await response.json();
-        setUserId(data.account.id);
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
   useEffect(() => {
-    fetchId();
-  }, []);
+    fetchAccount([]);
+  }, [token]);
 
-  useEffect(() => {
-    if (userId) {
-      fetchAccount();
-    }
-  }, [userId, token]);
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-cream-50 py-12 px-4 sm:px-6 lg:px-8">

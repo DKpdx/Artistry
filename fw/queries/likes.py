@@ -153,25 +153,3 @@ class LikesQueries:
                     return True
         except Exception:
             return False
-
-def get_like_by_user_and_art(self, user_id: int, art_id: int) -> Optional[LikesOut]:
-    try:
-        with pool.connection() as conn:
-            with conn.cursor() as db:
-                result = db.execute(
-                    """
-                    SELECT id
-                    , user_id
-                    , art_id
-                    , liked_by
-                    , created_at
-                    FROM likes
-                    WHERE liked_by = %s AND art_id = %s
-                    """,
-                    [user_id, art_id],
-                )
-                record = result.fetchone()
-                if record is not None:
-                    return self.record_to_likes_out(record)
-    except Exception:
-        return None

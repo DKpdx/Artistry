@@ -1,6 +1,8 @@
-import { AuthContext } from "@galvanize-inc/jwtdown-for-react";
-import { useEffect, useState, useContext } from "react";
+import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "@galvanize-inc/jwtdown-for-react";
 
 function UpdateAccountForm() {
   const [account, setAccount] = useState([]);
@@ -9,11 +11,9 @@ function UpdateAccountForm() {
   const [user_pic_url, setUser_Pic_Url] = useState("");
   const [bio, setBio] = useState("");
   const [zipcode, setZipcode] = useState("");
-
-  const { token, setToken } = useContext(AuthContext);
+  const { token } = useAuthContext();
   const navigate = useNavigate();
-  const [accountUpdated, setAccountUpdated] = useState(false);
-  const [userId, setUserId] = useState("");
+  const { setToken } = useContext(AuthContext);
 
   const handleDeleteAccount = async () => {
     try {
@@ -52,62 +52,37 @@ function UpdateAccountForm() {
     }
   };
 
+  useEffect(() => {
+    fetchAccount();
+  }, []);
+
   const fetchAccount = async () => {
-    const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/accounts/${userId}`;
+    const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/token`;
     const response = await fetch(url, {
       method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      credentials: "include",
     });
     if (response.ok) {
       const data = await response.json();
-      setAccount(data);
-      setUsername(data.username);
-      setEmail(data.email);
-      setUser_Pic_Url(data.user_pic_url);
-      setBio(data.bio);
-      setZipcode(data.zipcode);
+      setAccount(data.account);
+      setUsername(data.account.username);
+      setEmail(data.account.email);
+      setUser_Pic_Url(data.account.user_pic_url);
+      setBio(data.account.bio);
+      setZipcode(data.account.zipcode);
     } else {
       console.log("Error fetching account:", response.status);
     }
   };
 
-  const fetchId = async () => {
-    try {
-      const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/token`;
-      const fetchConfig = {
-        credentials: "include",
-      };
-      const response = await fetch(url, fetchConfig);
-      if (response.ok) {
-        const data = await response.json();
-        setUserId(data.account.id);
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
-  useEffect(() => {
-    fetchId();
-  }, []);
-
-  useEffect(() => {
-    if (userId) {
-      fetchAccount();
-    }
-  }, [userId, token]);
-
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = {
-      username,
-      email,
-      user_pic_url,
-      bio,
-      zipcode,
-    };
+    const data = {};
+    data.username = username;
+    data.email = email;
+    data.user_pic_url = user_pic_url;
+    data.bio = bio;
+    data.zipcode = zipcode;
 
     const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/accounts/${account.id}`;
     const fetchConfig = {
@@ -122,14 +97,15 @@ function UpdateAccountForm() {
     const response = await fetch(url, fetchConfig);
     if (response.ok) {
       await response.json();
-      setAccount({});
+      setAccount([]);
       setUsername("");
       setEmail("");
       setUser_Pic_Url("");
       setBio("");
       setZipcode("");
-      setAccountUpdated(true);
-      navigate(`/profile/${account.id}`);
+      fetchAccount();
+      handleLogout();
+      navigate("/login");
     } else {
       console.error("Error updating account information. Please try again");
     }

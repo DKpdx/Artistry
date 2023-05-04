@@ -1,33 +1,10 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
 
 function ArtDetail() {
   const [art, setArt] = useState([]);
-  const [userId, setUserId] = useState("");
   const { art_id } = useParams();
   const navigate = useNavigate();
-  const { token } = useAuthContext();
-
-  const fetchId = async () => {
-    try {
-      const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/token`;
-      const fetchConfig = {
-        credentials: "include",
-      };
-      const response = await fetch(url, fetchConfig);
-      if (response.ok) {
-        const data = await response.json();
-        setUserId(data.account.id);
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
-  useEffect(() => {
-    fetchId();
-  }, []);
 
   const fetchArt = useCallback(async () => {
     const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/arts/${art_id}`;
@@ -44,10 +21,6 @@ function ArtDetail() {
 
   const goToUpdateArtForm = () => {
     navigate(`/arts/${art_id}/update`);
-  };
-
-  const goToCreateLikeForm = () => {
-    navigate("/likes", { state: { art } });
   };
 
   return art ? (
@@ -97,21 +70,13 @@ function ArtDetail() {
           </table>
         </div>
         <div className="text-center mt-4">
-          {parseInt(userId) === parseInt(art.user_id) && (
-            <button
-              onClick={goToUpdateArtForm}
-              className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded"
-            >
-              Update Art
-            </button>
-          )}
+          <button
+            onClick={goToUpdateArtForm}
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Update Art
+          </button>
         </div>
-        <button
-          onClick={goToCreateLikeForm}
-          className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded"
-        >
-          Like this art!
-        </button>
       </div>
     </div>
   ) : (

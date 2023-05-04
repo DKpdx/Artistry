@@ -129,7 +129,7 @@ const LikeButton = ({ artId, artistId }) => {
         <img
         src={heartFull}
         alt="Like"
-        style={{ transform: "scale(0.5)" }}
+        // style={{ transform: "scale(0.5)" }}
         />
       )
       :
@@ -137,7 +137,7 @@ const LikeButton = ({ artId, artistId }) => {
         <img
           src={heartEmpty}
           alt="No Like"
-          style={{ transform: "scale(0.5)" }}
+          // style={{ transform: "scale(0.5)" }}
         />
       )}
     </button>
