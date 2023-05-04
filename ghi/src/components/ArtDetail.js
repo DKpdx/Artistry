@@ -53,31 +53,50 @@ function ArtDetail() {
   return art ? (
     <div className="min-h-screen w-full flex items-center justify-center bg-cream-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl w-full space-y-8 bg-white p-8 rounded-lg shadow-lg">
-        <h5 className="text-center text-2xl font-bold text-gray-900">
-          Artwork Details
-        </h5>
-        <div className="flex justify-center">
-          <img
-            alt="picture_here"
-            src={art.art_pic_url}
-            className="w-full max-w-md h-auto object-cover rounded mx-auto"
-          ></img>
+        <div>
+          <h5 className="text-center text-2xl font-bold text-gray-900">
+            Artwork Details
+          </h5>
         </div>
-        <div className="space-y-4">
-          <p className="text-center text-xl font-semibold">
-            Title: {art.title}
-          </p>
-          <p className="text-center text-xl font-semibold">
-            Artist: {art.username}
-          </p>
-          <p className="text-center text-xl font-semibold">
-            Description: {art.description}
-          </p>
-          <p className="text-center text-xl font-semibold">
-            Price: {art.price}
-          </p>
+        <div className="rounded-md shadow-sm -space-y-px mb-3">
+          <table className="table table-striped w-full">
+            <thead>
+              <tr>
+                <th className="bg-gray-100 py-2 px-4 rounded-t-md font-semibold">
+                  Artist
+                </th>
+                <th className="bg-gray-100 py-2 px-4 rounded-t-md font-semibold">
+                  Title
+                </th>
+                <th className="bg-gray-100 py-2 px-4 rounded-t-md font-semibold">
+                  Picture
+                </th>
+                <th className="bg-gray-100 py-2 px-4 rounded-t-md font-semibold">
+                  Description
+                </th>
+                <th className="bg-gray-100 py-2 px-4 rounded-t-md font-semibold">
+                  Price
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr key={art.id} value={art.id}>
+                <td className="py-2 px-4">{art.username}</td>
+                <td className="py-2 px-4">{art.title}</td>
+                <td className="py-2 px-4">
+                  <img
+                    alt="picture_here"
+                    src={art.art_pic_url}
+                    className="w-48 h-32 object-cover rounded"
+                  ></img>
+                </td>
+                <td className="py-2 px-4">{art.description}</td>
+                <td className="py-2 px-4">{art.price}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <div className="flex justify-center mt-4 space-x-4">
+        <div className="text-center mt-4">
           {parseInt(userId) === parseInt(art.user_id) && (
             <button
               onClick={goToUpdateArtForm}
@@ -86,13 +105,13 @@ function ArtDetail() {
               Update Art
             </button>
           )}
-          <button
-            onClick={goToCreateLikeForm}
-            className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded"
-          >
-            Like this art!
-          </button>
         </div>
+        <button
+          onClick={goToCreateLikeForm}
+          className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded"
+        >
+          Like this art!
+        </button>
       </div>
     </div>
   ) : (

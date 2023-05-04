@@ -36,11 +36,15 @@ const Arts = () => {
           <div key={art.id} style={{ cursor: "pointer" }}>
             <Art
               artist={art.username}
+              artistId={art.user_id}
+              artId={art.id}
               title={art.title}
               image={art.art_pic_url}
               description={art.description}
               price={art.price}
               onClickImage={() => handleImageClick(art.id)}
+              initialIsLiked={art.isLiked}
+              initialLikeCount={art.likeCount}
             />
           </div>
         ))}

@@ -62,18 +62,9 @@ def get_one_art(
 @router.delete("/arts/{art_id}", response_model=bool)
 def delete_art(
     art_id: int,
-    response: Response,
     repo: ArtQueries = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 ) -> bool:
-    art= repo.get_one(art_id)
-    if art is None:
-        response.status_code = 404
-        return False
-
-    if art.user_id != account_data["id"]:
-        response.status_code = 401
-        return False
     return repo.delete(art_id)
 
 
