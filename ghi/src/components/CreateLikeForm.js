@@ -1,16 +1,15 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
 
 function CreateLikeForm() {
-  const { token } = useAuthContext();
-  const { art_id } = useParams();
-  const [, setArts] = useState([]);
-  const [userId, setUserId] = useState("");
-  const [artId, setArtId] = useState("");
+  const location = useLocation();
+  const { art } = location.state || {};
+  const [userId, setUserId] = useState(art?.user_id || "");
+  const [artId, setArtId] = useState(art?.id || "");
   const [likedBy, setLikedBy] = useState("");
-  const [, setAccount] = useState([]);
   const navigate = useNavigate();
+  const { token } = useAuthContext();
 
   const handleLikedByChange = (e) => {
     const value = e.target.value;
@@ -22,6 +21,11 @@ function CreateLikeForm() {
     setArtId(value);
   };
 
+  const handleUserIdChange = (e) => {
+    const value = e.target.value;
+    setUserId(value);
+  };
+
   const fetchAccount = async () => {
     const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/token`;
     const response = await fetch(url, {
@@ -30,9 +34,7 @@ function CreateLikeForm() {
     });
     if (response.ok) {
       const data = await response.json();
-      setAccount(data.account);
       setLikedBy(data.account.id);
-      setUserId(data.account.id);
     } else {
       console.log("Error fetching account:", response.status);
     }
@@ -40,23 +42,25 @@ function CreateLikeForm() {
 
   useEffect(() => {
     fetchAccount();
-    if (art_id) {
-      setArtId(art_id);
-    }
   }, []);
 
-  const fetchArts = async () => {
-    const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/arts`;
+  const fetchArt = useCallback(async () => {
+    if (!artId) return;
+    const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/arts/${artId}`;
     const response = await fetch(url);
     if (response.ok) {
       const data = await response.json();
-      setArts(data.arts);
+      // setArt(data);
+      setArtId(data.id);
+      setUserId(data.user_id);
     }
-  };
+  }, [art]);
 
   useEffect(() => {
-    fetchArts();
-  }, []);
+    if (!art) return;
+    setArtId(art.id);
+    setUserId(art.user_id);
+  }, [art]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -110,7 +114,7 @@ function CreateLikeForm() {
                 name="user_id"
                 id="user_id"
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                // onChange={handleUserIdChange}
+                onChange={handleUserIdChange}
                 value={userId}
               />
             </div>
