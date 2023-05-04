@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect, useCallback } from "react";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
 
 function CreateLikeForm() {
-  const { token } = useAuthContext();
-  const [, setArts] = useState([]);
-  const [userId, setUserId] = useState("");
-  const [artId, setArtId] = useState("");
+  const location = useLocation();
+  const { art } = location.state || {};
+  const [userId, setUserId] = useState(art?.user_id || "");
+  const [artId, setArtId] = useState(art?.id || "");
   const [likedBy, setLikedBy] = useState("");
-  const [, setAccount] = useState([]);
   const navigate = useNavigate();
+  const { token } = useAuthContext();
 
-  const handleUserIdChange = (e) => {
+  const handleLikedByChange = (e) => {
     const value = e.target.value;
-    setUserId(value);
+    setLikedBy(value);
   };
 
   const handleArtIdChange = (e) => {
@@ -21,9 +21,9 @@ function CreateLikeForm() {
     setArtId(value);
   };
 
-  const handleLikedByChange = (e) => {
+  const handleUserIdChange = (e) => {
     const value = e.target.value;
-    setLikedBy(value);
+    setUserId(value);
   };
 
   const fetchAccount = async () => {
@@ -34,7 +34,6 @@ function CreateLikeForm() {
     });
     if (response.ok) {
       const data = await response.json();
-      setAccount(data.account);
       setLikedBy(data.account.id);
     } else {
       console.log("Error fetching account:", response.status);
@@ -45,18 +44,23 @@ function CreateLikeForm() {
     fetchAccount();
   }, []);
 
-  const fetchArts = async () => {
-    const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/arts`;
+  const fetchArt = useCallback(async () => {
+    if (!artId) return;
+    const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/arts/${artId}`;
     const response = await fetch(url);
     if (response.ok) {
       const data = await response.json();
-      setArts(data.arts);
+      // setArt(data);
+      setArtId(data.id);
+      setUserId(data.user_id);
     }
-  };
+  }, [art]);
 
   useEffect(() => {
-    fetchArts();
-  }, []);
+    if (!art) return;
+    setArtId(art.id);
+    setUserId(art.user_id);
+  }, [art]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

@@ -1,34 +1,59 @@
-import React, { useEffect, useState } from "react";
-import useToken from "@galvanize-inc/jwtdown-for-react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState, useContext } from "react";
+import { useToken, AuthContext } from "@galvanize-inc/jwtdown-for-react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function AccountDetails() {
   const [account, setAccount] = useState([]);
-  const { token } = useToken();
+  const { token } = useContext(AuthContext);
+  const [userId, setUserId] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
 
   const goToUpdateAccount = () => {
     navigate("/accounts/id");
   };
 
   const fetchAccount = async () => {
-    const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/token`;
+    const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/accounts/${userId}`;
     const response = await fetch(url, {
       method: "GET",
-      credentials: "include",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     });
     if (response.ok) {
       const data = await response.json();
-      setAccount(data.account);
+      setAccount(data);
     } else {
       console.log("Error fetching account:", response.status);
     }
   };
 
-  useEffect(() => {
-    fetchAccount([]);
-  }, [token]);
+  const fetchId = async () => {
+    try {
+      const url = `${process.env.REACT_APP_USER_SERVICE_API_HOST}/token`;
+      const fetchConfig = {
+        credentials: "include",
+      };
+      const response = await fetch(url, fetchConfig);
+      if (response.ok) {
+        const data = await response.json();
+        setUserId(data.account.id);
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
+  useEffect(() => {
+    fetchId();
+  }, []);
+
+  useEffect(() => {
+    if (userId) {
+      fetchAccount();
+    }
+  }, [userId, token]);
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-cream-50 py-12 px-4 sm:px-6 lg:px-8">
