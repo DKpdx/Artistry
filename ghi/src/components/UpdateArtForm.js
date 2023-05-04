@@ -13,6 +13,28 @@ function UpdateArtForm() {
   const [price, setPrice] = useState("");
   const navigate = useNavigate();
 
+  const handleDeleteArt = async () => {
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_USER_SERVICE_API_HOST}/arts/${art_id}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (response.ok) {
+        setArt({});
+        navigate("/");
+      } else {
+        console.error("Error deleting art:");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const handleTitleChange = (event) => {
     const value = event.target.value;
     setTitle(value);
@@ -188,6 +210,13 @@ function UpdateArtForm() {
               </button>
             </div>
           </form>
+          <button
+            type="submit"
+            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-500 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-400"
+            onClick={handleDeleteArt}
+          >
+            Delete Art
+          </button>
         </div>
       </div>
     </>
