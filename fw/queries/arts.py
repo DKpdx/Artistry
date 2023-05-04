@@ -70,11 +70,19 @@ class ArtQueries:
                 with conn.cursor() as db:
                     db.execute(
                         """
+                        DELETE FROM likes
+                        WHERE art_id = %s
+                        """,
+                        [art_id],
+                    )
+                    db.execute(
+                        """
                         DELETE FROM arts
                         WHERE arts.id = %s
                         """,
                         [art_id],
                     )
+                    conn.commit()
                     return True
         except Exception:
             return False

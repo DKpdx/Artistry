@@ -7,8 +7,6 @@ const Art = ({
   image,
   description,
   artist,
-  artistId,
-  artId,
   price,
   onClickImage,
   // initialIsLiked,
@@ -170,10 +168,10 @@ const Art = ({
       <div className="pt-2 flex justify-between items-start">
         <div>
           <p className="max-w-[18rem] font-semibold text-[16px]">
-            {description}, ID: {artId}
+            {description}
           </p>
           <p className="max-w-[18rem] text-[16px] -mt-1 text-gray-500">
-            {artist}, Artist ID:{artistId}
+            {artist}
           </p>
           <p className="max-w-[18rem] text-[16px]">${price}</p>
         </div>
